@@ -1,0 +1,3 @@
+existsUser - пользователь уже существует
+SQLException - не удалось получить соединение с бд
+InterruptException - 

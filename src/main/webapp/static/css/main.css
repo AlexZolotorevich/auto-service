@@ -1,0 +1,44 @@
+
+
+
+body {
+	
+	padding: 300;
+	outline: none;
+	color: red;
+	background: green;
+}
+
+a{
+	text-decoration: none;
+
+}
+
+
+
+
+#navbarSupportedContent {
+	
+	padding-left: 30px;
+}
+
+
+.textcolor{
+	color:#a09fa5;
+}
+
+.nav-item{
+	color:red;
+}
+
+.p-0{
+	padding: 0;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon{
+	height: 50px;
+	width: 50px;
+}
+
+
+

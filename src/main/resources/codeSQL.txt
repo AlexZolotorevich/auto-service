@@ -1,0 +1,107 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema service-mercedes
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema service-mercedes
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `service-mercedes` DEFAULT CHARACTER SET utf8 ;
+USE `service-mercedes` ;
+
+-- -----------------------------------------------------
+-- Table `service-mercedes`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `service-mercedes`.`user` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(20) NOT NULL,
+  `status` TINYINT(1) NOT NULL,
+  `email` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `service-mercedes`.`vehicle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `service-mercedes`.`vehicle` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `model` VARCHAR(45) NOT NULL,
+  `status` TINYINT(1) NOT NULL,
+  `year` VARCHAR(10) NOT NULL,
+  `typeCarcase` VARCHAR(45) NOT NULL,
+  `price` VARCHAR(45) NOT NULL,
+  `transmission` VARCHAR(30) NOT NULL,
+  `typeFuel` VARCHAR(45) NOT NULL,
+  `engineCapacity` VARCHAR(45) NOT NULL,
+  `driveUnit` VARCHAR(45) NOT NULL,
+  `mileage` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `service-mercedes`.`vehicle_has_user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `service-mercedes`.`vehicle_has_user` (
+  `vehicle_ID` INT NOT NULL,
+  `user_ID` INT NOT NULL,
+  PRIMARY KEY (`vehicle_ID`, `user_ID`),
+  INDEX `fk_vehicle_has_user_user1_idx` (`user_ID` ASC),
+  INDEX `fk_vehicle_has_user_vehicle_idx` (`vehicle_ID` ASC),
+  CONSTRAINT `fk_vehicle_has_user_vehicle`
+    FOREIGN KEY (`vehicle_ID`)
+    REFERENCES `service-mercedes`.`vehicle` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehicle_has_user_user1`
+    FOREIGN KEY (`user_ID`)
+    REFERENCES `service-mercedes`.`user` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `service-mercedes`.`images`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `service-mercedes`.`images` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `image` VARCHAR(45) NULL,
+  `vehicle_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_images_vehicle2_idx` (`vehicle_ID` ASC),
+  CONSTRAINT `fk_images_vehicle2`
+    FOREIGN KEY (`vehicle_ID`)
+    REFERENCES `service-mercedes`.`vehicle` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `service-mercedes`.`images`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `service-mercedes`.`images` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `image` VARCHAR(45) NULL,
+  `vehicle_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_images_vehicle2_idx` (`vehicle_ID` ASC),
+  CONSTRAINT `fk_images_vehicle2`
+    FOREIGN KEY (`vehicle_ID`)
+    REFERENCES `service-mercedes`.`vehicle` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
