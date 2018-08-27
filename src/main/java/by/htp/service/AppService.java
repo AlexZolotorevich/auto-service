@@ -36,4 +36,6 @@ public interface AppService {
 	List<User> getAllUsers() throws ServiceException; 
 	
 	void toBanUser(String userID) throws ServiceException;
+	
+	public List<String> getListErrors();
 }

@@ -110,7 +110,7 @@
 	float: left;
 	width: 130px;
 	height: 130px;
-	border: 3px solid green;
+	
 }
 
 .block {
@@ -303,7 +303,7 @@
 
 			<div class="pagination">
 				<ul class="pagination">
-					<c:if test="${currentPage != 1}">
+					<c:if test="${currentPage > 1}">
 						<li class="page-item"><a class="page-link"
 							href="Controller?command=sales_page&currentPage=${currentPage-1}">Previous</a>
 						</li>

@@ -1,7 +1,7 @@
 package by.htp.controller.impl;
 
 import java.io.IOException;
-
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,14 +30,16 @@ public class AddVehicle implements Command {
 		String engineCapacity = request.getParameter(ConstantParam.ENGINE);
 		String driveUnit = request.getParameter(ConstantParam.DRIVE_UNIT);
 		String mileage = request.getParameter(ConstantParam.MILEAGE);
-		String user_ID = request.getParameter(ConstantParam.USER_ID);
+		String userID = request.getParameter(ConstantParam.USER_ID);
 		String description = request.getParameter(ConstantParam.DESCRIPTION);
-//		List<Part> files = getFilesPart(request);
 
 		try {
 			AppService appService = ServiceFactory.getInstance().getAppService();
-			appService.addVehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit,
-					mileage, user_ID, description);
+			
+			if(!appService.addVehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit, mileage, userID, description)){
+				List<String> listErrors = appService.getListErrors();
+				request.setAttribute(ConstantParam.ERROR_MESSAGE, listErrors);
+			}
 			response.sendRedirect(request.getRequestURL() + command);
 
 		} catch (ServiceException e) {
@@ -45,15 +47,5 @@ public class AddVehicle implements Command {
 		}
 
 	}
-
-//	private List<Part> getFilesPart(HttpServletRequest request) throws IOException, ServletException {
-//		List<Part> files = new ArrayList<Part>();
-////		for (Part part : request.getParts()) {
-////			if ("image/jpg".equals(part.getContentType())) {
-////				files.add(part);
-////			}
-////		}
-//		return files;
-//	}
 
 }

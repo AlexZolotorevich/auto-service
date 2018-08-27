@@ -8,6 +8,16 @@
 <fmt:setBundle basename="local" var="loc" />
 <fmt:message bundle="${loc}" key="common.error.sign_in.text"
 	var="signin" />
+<fmt:message bundle="${loc}" key="common.error.checkLogin.text"
+	var="incorrectLogin" />
+<fmt:message bundle="${loc}" key="common.error.checkPasswordSignIn.text"
+	var="incorrectPassword" />
+<fmt:message bundle="${loc}" key="common.error.errorBan.text"
+	var="errorBan" />
+<fmt:message bundle="${loc}" key="common.signInPage.login.text"
+	var="login" />
+<fmt:message bundle="${loc}" key="common.signInPage.password.text"
+	var="password" />
 
 <html>
 <head>
@@ -18,18 +28,29 @@
 <title>sign in</title>
 </head>
 <body>
-<style>
+	<style>
 .block {
-	width: 400px; /* Ширина слоя в пикселах */
+	width: 460px; /* Ширина слоя в пикселах */
 	margin: 0 auto; /* Отступ слева и справа */
 	background: #393939; /* Цвет фона */
 	padding: 10px; /* Поля вокруг текста */
-	text-align: center; /* Выравнивание содержимого слоя по левому краю */
+	padding-left: 30px;
+	text-align: left; /* Выравнивание содержимого слоя по левому краю */
 }
 
 .text-color {
 	color: #a09fa5;
 }
+
+.text {
+	float: left;
+	padding-left: 30px;
+	padding-right: 10px;
+	color: #cccfd1;
+	padding-top: 10px;
+	
+}
+
 </style>
 
 	<div class="container-fluid p-0">
@@ -39,31 +60,50 @@
 	</div>
 	<p>
 	<div class="block">
+		<div class="text">
+		<h6>${login}:</h6>
+		<h6>${password}:</h6>
+		</div>
+		
+		<div class="command">
+			<form action="Controller" method="post">
 
-		<form action="Controller" method="post">
-			<input type="hidden" name="command" value="sign_in" /> <input
-				class="btn btn-outline-secondary" type="text" name="login"
-				placeholder="login"></br> <input
-				class="btn btn-outline-secondary" type="password" name="password"
-				placeholder="password"></br> <input
-				class="btn btn-outline-secondary" type="submit" value="accept">
-		</form>
-	</div>
+				<input type="hidden" name="command" value="sign_in" />
+				
+				<input class="btn btn-outline-secondary" type="text" name="login"
+					placeholder="login"></br>
+				
+				<input class="btn btn-outline-secondary" type="password"
+					name="password" placeholder="password"></br> <input
+					class="btn btn-outline-secondary" type="submit" value="accept">
+					</form>
+		</div>
 
-		<div>
+
+		<div class="errors">
 			<i> <c:if test="${not empty requestScope.errorMessage}">
 					<div class="text-color">
-						<c:out value="${signin}" />
+						<c:forEach items="${requestScope.errorMessage}" var="error">
+							<c:if test="${error.contains('incorrectLogin')}">
+								<c:out value="${incorrectLogin}" />
+							</c:if>
+
+							<c:if test="${error.contains('incorrectPassword')}">
+								<c:out value="${incorrectPassword}" />
+							</c:if>
+
+							<c:if test="${error.contains('errorBan')}">
+								<c:out value="${errorBan}" />
+							</c:if>
+
+						</c:forEach>
 					</div>
-				</c:if> <br />
-
-			</i>
-		</div>
-
-
-
-		<div class="footer">
-			<jsp:include page="footer.jsp" />
-		</div>
+				</c:if>
+			</i><br />
+		
+	</div>
+	<div class="footer">
+		<jsp:include page="footer.jsp" />
+	</div>
 </body>
 </html>

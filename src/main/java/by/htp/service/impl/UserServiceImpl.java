@@ -1,7 +1,6 @@
 package by.htp.service.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -25,12 +24,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User signIn(String login, String password) throws ServiceException{
 		User user = null;
+		list = ValidationProvider.checkSignInUser(login, password);
 		
 		try {
-			DAOFactory daoFactory = DAOFactory.getInstance();
-			UserDAO userDAO = daoFactory.getUserDAO();
-			user = userDAO.signIn(login, password);
-			
+			if(list.isEmpty()) {
+				DAOFactory daoFactory = DAOFactory.getInstance();
+				UserDAO userDAO = daoFactory.getUserDAO();
+				user = userDAO.signIn(login, password);
+				
+				if(user != null && Integer.parseInt(user.getStatus()) == 0) {
+					list.add("errorBan");
+				}
+			}
 		} catch (DAOException e) {
 			LOGGER.warn("ServletException in Controller", e);
 			throw new ServiceException("From DAO", e);
@@ -40,7 +45,9 @@ public class UserServiceImpl implements UserService {
 
 	
 	@Override
-	public User signUp(String login, String password, String name, String phone, String email) throws ServiceException {
+	public User signUp(String login, String password, String name, String phoneInner, String email) throws ServiceException {
+		
+		String phone = trimData(phoneInner);
 		User user = new User(login, password, name, phone, email);
 		User userNew = null;
 		
@@ -63,6 +70,12 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException("From DAO", e);
 		} 
 		return userNew;
+	}
+	
+	
+	private String trimData(String date) {
+		String result = date.replaceAll("\\s","");
+		return result;
 	}
 	
 	
@@ -110,19 +123,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return admin;
 	}
-	
-	
-	
-	public void outPutErrors(Map<String, String> errors) {
-		for(Map.Entry<String, String> pair : errors.entrySet()) {
-			System.out.println(pair);
-		}
-	}
-	
-	
-	
-	
-	
 	
 	@Override
 	public List<String> getList (){

@@ -21,8 +21,7 @@ public interface AppDAO {
 	
 	void deleteVehicleByID(Integer vehicle_ID) throws DAOException;
 	
-	void addVehicle(String model, String year, String typeCarcase, String price, String transmission, 
-					String typeFuel, String engineCapacity, String driveUnit, String mileage, Integer user_ID, String description, String date) throws DAOException;
+	void addVehicle(Vehicle vehicle, Integer user_ID, String date) throws DAOException;
 	
 	boolean addNews(String title, String text, int Id, String date) throws DAOException;
 	

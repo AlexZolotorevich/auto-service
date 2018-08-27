@@ -8,10 +8,10 @@ public class SQLquery {
 	
 	/** sql querry get count of vehicle*/
 	
-	public static final String GET_COUNT_OF_VEHICLE = "SELECT COUNT(ID) FROM `service-mercedes`.vehicle";
+	public static final String GET_COUNT_OF_VEHICLE = "SELECT COUNT(ID) FROM `service-mercedes`.vehicle WHERE status = '1'";
 	
 	/** sql querry for user*/
-	public static final String SIGN_IN = "SELECT ID, login, password, role, status, name, phone, email FROM `service-mercedes`.user WHERE login=? AND password=? AND status = '1'";
+	public static final String SIGN_IN = "SELECT ID, login, password, role, status, name, phone, email FROM `service-mercedes`.user WHERE login=? AND password=?";
 	public static final String SELECT_USER_BY_ID = "SELECT login, password, role, status, name, phone, email FROM `service-mercedes`.user WHERE ID=?";
 	public static final String SIGN_UP = "INSERT INTO `service-mercedes`.user (login, password, role, status, name, phone, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	public static final String EDIT_USER = "UPDATE `service-mercedes`.user SET  login = ?, password = ?, name = ?, phone = ?, email = ? WHERE ID= ?";
@@ -31,7 +31,10 @@ public class SQLquery {
 	
 	public static final String ADD_VEHICLE_DESCRIPTION = "INSERT INTO `service-mercedes`.description (vehicle_ID, linkDescription) VALUES (?, ?)";
 	public static final String DELETE_VEHICLE = "UPDATE `service-mercedes`.`vehicle` SET `status`='0' WHERE `ID`=?";
-	public static final String DELETE_VEHICLE_BY_ADMIN = "DELETE `service-mercedes`.`vehicle` SET `status`='0' WHERE `ID`=?";
+	public static final String DELETE_VEHICLE_BY_ADMIN = "DELETE FROM `service-mercedes`.vehicle WHERE ID = ?";
+	public static final String DELETE_VEHICLE_DESCRIPTION_BY_ADMIN = "DELETE FROM `service-mercedes`.description WHERE vehicle_ID = ?";
+	
+	
 	
 	
 	/** sql querry for vehicle and users admin*/

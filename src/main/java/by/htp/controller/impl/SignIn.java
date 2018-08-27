@@ -1,6 +1,7 @@
 package by.htp.controller.impl;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,53 +24,48 @@ public class SignIn implements Command {
 		String login = request.getParameter(ConstantParam.LOGIN);
 		String password = request.getParameter(ConstantParam.PASSWORD);
 		String nextPage = PagePath.MAIN_PAGE;
-
+		List<String> errorList = null;
+		
 		try {
 			UserService userService = ServiceFactory.getInstance().getUserService();
 
-			
-			/** check admin or user with prefix [Admin]
-			 * if it's true - make login*/
+			/**
+			 * check admin or user with prefix [Admin] if it's true - make login
+			 */
 			if (login.contains(ConstantParam.ADMIN_PREFIX)) {
 				AdminUser admin = userService.signInAdmin(login, password);
 				
-				if(admin != null) {
-				request.getSession(true).setAttribute(ConstantParam.ADMIN, admin);
-				
-				}else{
-				request.setAttribute(ConstantParam.ERROR_MESSAGE, ConstantParam.INCORRECT_DATES);
-				nextPage = PagePath.SIGN_IN_PAGE;
-				}
-
-				/** else we work with simple user and check him*/
-			} else {
-				User user = userService.signIn(login, password);
-
-				if (user == null) {
+				if (admin != null) {
+					request.getSession(true).setAttribute(ConstantParam.ADMIN, admin);
+					
+				} else {
 					request.setAttribute(ConstantParam.ERROR_MESSAGE, ConstantParam.INCORRECT_DATES);
 					nextPage = PagePath.SIGN_IN_PAGE;
+				}
 
+				/** else we work with simple user and check him */
+			} else {
+				User user = userService.signIn(login, password);
+				errorList = userService.getList();
+				
+				if (!errorList.isEmpty()) {
+					request.setAttribute(ConstantParam.ERROR_MESSAGE, errorList);
+					nextPage = PagePath.SIGN_IN_PAGE;
+					
+					/**
+					 * if we get user and user.status == 0 it means that user was banned from admin
+					 */
 				} else {
-					if (user.getStatus().equals(ConstantParam.NUMBER_ONE)) {
-						request.getSession(true).setAttribute(ConstantParam.USER, user);
-						request.setAttribute(ConstantParam.LOGIN, user.getLogin());
-						
-						/** if we get user and user.status == 0
-						 * it means that user was banned from admin*/
-					} else {
-						request.setAttribute(ConstantParam.BAN, ConstantParam.BAN);
-						nextPage = PagePath.SIGN_IN_PAGE;
-					}
+					request.getSession(true).setAttribute(ConstantParam.USER, user);
+					request.setAttribute(ConstantParam.LOGIN, user.getLogin());
 				}
 			}
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
-
+			
 		} catch (ServiceException e) {
 			response.sendRedirect(PagePath.ERROR_PAGE);
 		}
-
 	}
-	
 }

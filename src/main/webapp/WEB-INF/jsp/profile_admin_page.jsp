@@ -58,7 +58,7 @@
 					</form>
 
 					<form action="Controller" method="post">
-						<input type="hidden" name="command" value="delete_vehicle" /> 
+						<input type="hidden" name="command" value="delete_vehicle_admin" /> 
 						<input type="hidden" name="vehicle_ID" value="${car.ID}">
 						<input class="btn btn-outline-secondary" type="submit" value="${refuse}" />
 					</form>

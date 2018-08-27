@@ -18,22 +18,22 @@ public class Vehicle implements Serializable{
 	
 	private String typeCarcase;
 	
-	/** ���� */
+	
 	private String price;
 	
-	/** ����������� */
+	
 	private String transmission;
 	
-	/** ������� */
+	
 	private String typeFuel;
 	
-	/** ����� ��������� */
+	
 	private String engineCapacity;
 	
-	/** ������ */
+	
 	private String driveUnit;
 	
-	/** ������ */
+	
 	private String mileage;
 	
 	/** Date */
@@ -49,7 +49,8 @@ public class Vehicle implements Serializable{
 	
 	
 	/** Create Object*/
-	public Vehicle(int ID, String model, String year, String typeCarcase, String price, String transmission, String typeFuel, String engineCapacity, String driveUnit, String mileage, String date) {
+	public Vehicle(int ID, String model, String year, String typeCarcase, String price, String transmission,
+			String typeFuel, String engineCapacity, String driveUnit, String mileage, String date) {
 		this.ID = ID;
 		this.model = model;
 		this.year = year;
@@ -61,6 +62,21 @@ public class Vehicle implements Serializable{
 		this.driveUnit = driveUnit;
 		this.mileage = mileage;
 		this.date = date;
+		
+	}
+	/** Create Object for validation*/
+	public Vehicle(String model, String year, String typeCarcase, String price, String transmission,
+			String typeFuel, String engineCapacity, String driveUnit, String mileage, String description) {
+		this.model = model;
+		this.year = year;
+		this.typeCarcase = typeCarcase;
+		this.price = price;
+		this.transmission = transmission;
+		this.typeFuel = typeFuel;
+		this.engineCapacity = engineCapacity;
+		this.driveUnit = driveUnit;
+		this.mileage = mileage;
+		this.description = description;
 		
 	}
 	

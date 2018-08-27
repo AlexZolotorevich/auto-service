@@ -41,17 +41,19 @@ public class ValidationImpl implements Validation{
 	
 	@Override
 	public boolean checkName(String name) {
-
+		if(name == null) {
+			return false;
+		}
 			return true;
 	}
 	
 	@Override
 	public boolean checkPhone(String phone) {
 		Pattern pattern = Pattern.compile(PHONE_PATTERN);
-		Matcher matcher = pattern.matcher(phone.replaceAll("\\s",""));
+		Matcher matcher = pattern.matcher(phone);
 		return matcher.matches();
 	}
-
+	
 	@Override
 	public boolean checkEmail(String email) {
 		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -110,6 +112,46 @@ public class ValidationImpl implements Validation{
 			return false;
 		}
 		
+	}
+
+	@Override
+	public boolean checkModel(String model) {
+		if(model == null) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean checkTypeCarcase(String typeCarcase) {
+		if(typeCarcase == null) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean checkTransmission(String transmission) {
+		if(transmission == null) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean checkTypeFuel(String typeFuel) {
+		if(typeFuel == null) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean checkDriveUnit(String driveUnit) {
+		if(driveUnit == null) {
+			return false;
+		}
+		return true;
 	}
 
 	

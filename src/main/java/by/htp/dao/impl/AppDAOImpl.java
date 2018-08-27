@@ -94,48 +94,44 @@ public class AppDAOImpl implements AppDAO {
 	}
 
 	@Override
-	public void addVehicle(String model, String year, String typeCarcase, String price, String transmission,
-			String typeFuel, String engineCapacity, String driveUnit, String mileage, Integer user_ID,
-			String description, String date) throws DAOException {
+	public void addVehicle(Vehicle vehicle, Integer userID, String date) throws DAOException {
 
 		PreparedStatement preparedStatement;
 		Statement statement;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
-		Connection connection = null;
 		ResultSet resultSet = null;
-		int vehicle_ID = 0;
+		int vehicleID = 0;
 
-		try {
-			connection = connectionPool.takeConnection();
+		try (Connection connection = connectionPool.takeConnection()){
 			connection.setAutoCommit(false);
-
+			
 			try {
 				preparedStatement = connection.prepareStatement(SQLquery.ADD_VEHICLE);
-				preparedStatement.setString(1, model);
+				preparedStatement.setString(1, vehicle.getModel());
 				preparedStatement.setString(2, SQLquery.STATUS_NUMBER);
-				preparedStatement.setString(3, year);
-				preparedStatement.setString(4, typeCarcase);
-				preparedStatement.setString(5, price);
-				preparedStatement.setString(6, transmission);
-				preparedStatement.setString(7, typeFuel);
-				preparedStatement.setString(8, engineCapacity);
-				preparedStatement.setString(9, driveUnit);
-				preparedStatement.setString(10, mileage);
+				preparedStatement.setString(3, vehicle.getYear());
+				preparedStatement.setString(4, vehicle.getTypeCarcase());
+				preparedStatement.setString(5, vehicle.getPrice());
+				preparedStatement.setString(6, vehicle.getTransmission());
+				preparedStatement.setString(7, vehicle.getTypeFuel());
+				preparedStatement.setString(8, vehicle.getEngineCapacity());
+				preparedStatement.setString(9, vehicle.getDriveUnit());
+				preparedStatement.setString(10, vehicle.getMileage());
 				preparedStatement.setString(11, date);
-				preparedStatement.setInt(12, user_ID);
+				preparedStatement.setInt(12, userID);
 				preparedStatement.execute();
 
 				statement = connection.createStatement();
 				resultSet = statement.executeQuery(SQLquery.GET_LAST_ID);
 
 				while (resultSet.next()) {
-					vehicle_ID = resultSet.getInt("last_insert_id()");
+					vehicleID = resultSet.getInt("last_insert_id()");
 
 				}
-				if (vehicle_ID != 0) {
+				if (vehicleID != 0) {
 					preparedStatement = connection.prepareStatement(SQLquery.ADD_VEHICLE_DESCRIPTION);
-					preparedStatement.setInt(1, vehicle_ID);
-					preparedStatement.setString(2, description);
+					preparedStatement.setInt(1, vehicleID);
+					preparedStatement.setString(2, vehicle.getDescription());
 					preparedStatement.execute();
 
 					connection.commit();
@@ -358,14 +354,14 @@ public class AppDAOImpl implements AppDAO {
 	}
 
 	@Override
-	public void acceptVehicle(Integer vehicle_ID) throws DAOException{
+	public void acceptVehicle(Integer vehicleID) throws DAOException{
 		
 		PreparedStatement preparedStatement;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		
 		try(Connection connection = connectionPool.takeConnection()){
 		preparedStatement = connection.prepareStatement(SQLquery.ACCEPT_VEHICLE);	
-		preparedStatement.setInt(1, vehicle_ID);
+		preparedStatement.setInt(1, vehicleID);
 		preparedStatement.execute();
 			
 		}catch (SQLException e) {
@@ -380,15 +376,29 @@ public class AppDAOImpl implements AppDAO {
 	}
 
 	@Override
-	public void deleteVehicleByAdmin(Integer vehicle_ID) throws DAOException {
+	public void deleteVehicleByAdmin(Integer vehicleID) throws DAOException {
 		
 		PreparedStatement preparedStatement;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		
 		try(Connection connection = connectionPool.takeConnection()){
-			preparedStatement = connection.prepareStatement(SQLquery.DELETE_VEHICLE_BY_ADMIN);	
-			preparedStatement.setInt(1, vehicle_ID);
-			preparedStatement.execute();
+			connection.setAutoCommit(false);
+			
+			try {
+				preparedStatement = connection.prepareStatement(SQLquery.DELETE_VEHICLE_DESCRIPTION_BY_ADMIN);	
+				preparedStatement.setInt(1, vehicleID);
+				preparedStatement.execute();
+				
+				preparedStatement = connection.prepareStatement(SQLquery.DELETE_VEHICLE_BY_ADMIN);
+				preparedStatement.setInt(1, vehicleID);
+				preparedStatement.execute();
+				connection.commit();
+				
+			}catch (SQLException e) {
+				logger.warn("SQLException in DAO impl. Making rollback", e);
+				connection.rollback();
+				throw new DAOException("SQLException", e);
+			}
 			
 			}catch (SQLException e) {
 				logger.fatal("SQLException in DAO impl", e);
@@ -463,7 +473,7 @@ public class AppDAOImpl implements AppDAO {
 
 	@Override
 	public News getAllNews() throws DAOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

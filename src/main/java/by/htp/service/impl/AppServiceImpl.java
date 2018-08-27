@@ -1,16 +1,7 @@
 package by.htp.service.impl;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,12 +16,14 @@ import by.htp.entity.User;
 import by.htp.entity.Vehicle;
 import by.htp.service.AppService;
 import by.htp.service.exception.ServiceException;
+import by.htp.service.impl.validation.ValidationProvider;
 
 public class AppServiceImpl implements AppService {
 
 	private final static Logger logger = Logger.getLogger(AppServiceImpl.class);
 	private static AppDAO appDAO = DAOFactory.getInstance().getAppDAO();
 	private PageInformation pageInfo = null;
+	private List<String> listErrors = null;
 
 	
 	/** get portion of vehicles */
@@ -92,20 +85,26 @@ public class AppServiceImpl implements AppService {
 	/** add vehicle user */
 	@Override
 	public boolean addVehicle(String model, String year, String typeCarcase, String price, String transmission,
-			String typeFuel, String engineCapacity, String driveUnit, String mileage, String user_ID,
-			String description) throws ServiceException {
-
+			String typeFuel, String engineCapacity, String driveUnit, String mileage, String userID, String description) throws ServiceException {
+		
+		Vehicle vehicle = new Vehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit, mileage, description);
+		listErrors = ValidationProvider.checkVehicle(vehicle);
 		String date = takeDate();
+		
 		try {
-
-			appDAO.addVehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit,
-					mileage, Integer.parseInt(user_ID), description, date);
+			if(listErrors.isEmpty()) {
+				appDAO.addVehicle(vehicle, Integer.parseInt(userID), date);
+			}
 		} catch (DAOException e) {
 			logger.warn("ServletException in AppService", e);
 			throw new ServiceException("ServiceException", e);
 		}
 		return true;
 	}
+	
+	
+	
+	
 
 	/** add news admin */
 	@Override
@@ -272,5 +271,9 @@ public class AppServiceImpl implements AppService {
 		}
 		
 		return news;
+	}
+	@Override
+	public List<String> getListErrors() {
+		return listErrors;
 	}
 }

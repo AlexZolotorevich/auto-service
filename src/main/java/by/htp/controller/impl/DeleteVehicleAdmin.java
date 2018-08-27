@@ -13,19 +13,20 @@ import by.htp.service.exception.ServiceException;
 
 public class DeleteVehicleAdmin implements Command{
 
-	private final static String command = "?command=to_profile_page";
+	private final static String command = "?command=to_profile_page_admin";
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer vehicle_ID = Integer.parseInt(request.getParameter(ConstantParam.VEHICLE_ID));
+		
+		Integer vehicleID = Integer.parseInt(request.getParameter(ConstantParam.VEHICLE_ID));
 		
 		AppService appService = ServiceFactory.getInstance().getAppService();
 		
 		try {
-			appService.deleteVehicleByAdmin(vehicle_ID);
+			appService.deleteVehicleByAdmin(vehicleID);
 			response.sendRedirect(request.getRequestURL() + command);
 		} catch (ServiceException e) {
-			
+			response.sendRedirect(ConstantParam.ERROR_MESSAGE);
 		}
 		
 	}
