@@ -1,5 +1,6 @@
 package by.htp.service;
 
+import by.htp.entity.News;
 import by.htp.entity.PageInformation;
 import by.htp.entity.User;
 import by.htp.entity.Vehicle;
@@ -23,6 +24,8 @@ public interface AppService {
 			String engineCapacity, String driveUnit, String mileage, String user_ID, String description) throws ServiceException;
 	
 	boolean addNews(String title, String text, long Id) throws ServiceException;
+	
+	News getAllNews() throws ServiceException;
 	
 	List<Vehicle>getNewCarsOfUsers() throws ServiceException;
 	

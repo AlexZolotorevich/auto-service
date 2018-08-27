@@ -16,8 +16,29 @@
 <fmt:message bundle="${loc}" key="common.sales_page.detail.text"
 	var="detail" />
 
-
-
+<fmt:message bundle="${loc}" key="common.salespage.model.text"
+	var="model" />
+<fmt:message bundle="${loc}" key="common.salespage.year.text" var="year" />
+<fmt:message bundle="${loc}" key="common.salespage.transmission.text"
+	var="transmission" />
+<fmt:message bundle="${loc}" key="common.salespage.engineCapacity.text"
+	var="engineCapacity" />
+<fmt:message bundle="${loc}" key="common.salespage.fuel.text"
+	var="fuel" />	
+<fmt:message bundle="${loc}" key="common.salespage.driveUnit.text"
+	var="driveUnit" />
+<fmt:message bundle="${loc}" key="common.salespage.mileage.text"
+	var="mileage" />
+<fmt:message bundle="${loc}" key="common.salespage.engineCapacity.text"
+	var="engineCapacity" />
+<fmt:message bundle="${loc}" key="common.salespage.price.text"
+	var="price" />
+<fmt:message bundle="${loc}" key="common.salespage.date.text"
+	var="date" />
+<fmt:message bundle="${loc}" key="common.salespage.carcase.text"
+	var="carcase" />		
+	
+		
 <head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -40,7 +61,7 @@
 
 .content {
 	margin-left: 480px;
-	width: 655px;
+	width: 700px;
 }
 
 .footer {
@@ -50,6 +71,7 @@
 .content-cars {
 	background: 3px solid #e8e8e8;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+	width: 100%;
 }
 
 .model {
@@ -83,6 +105,29 @@
 .footer {
 	clear: left;
 }
+
+.picture {
+	float: left;
+	width: 130px;
+	height: 130px;
+	border: 3px solid green;
+}
+
+.block {
+	background: #eee;
+	padding: 10px;
+	height: 130px;
+	float: left;
+	width: 25%;
+	margin-right: 2%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.block:last-child {
+	margin-right: 0;
+}
 </style>
 
 
@@ -95,34 +140,34 @@
 				<div class="left-check">
 
 					<div>
-						<input type="checkbox" id="aklasse" name="model" value="aklasse" />
+						<input type="checkbox" id="aklasse" name="model" value="a" />
 						<label for="aklasse">A-Klasse</label>
 					</div>
 					<div>
-						<input type="checkbox" id="bklasse" name="model" value="bklasse" />
+						<input type="checkbox" id="bklasse" name="model" value="b" />
 						<label for="bklasse">B-Klasse</label>
 					</div>
 					<div>
-						<input type="checkbox" id="cklasse" name="model" value="cklasse" />
+						<input type="checkbox" id="cklasse" name="model" value="c" />
 						<label for="cklasse">C-Klasse</label>
 					</div>
 					<div>
-						<input type="checkbox" id="eklasse" name="model" value="eklasse" />
+						<input type="checkbox" id="eklasse" name="model" value="e" />
 						<label for="eklasse">E-Klasse</label>
 					</div>
 				</div>
 
 				<div class="right-check">
 					<div>
-						<input type="checkbox" id="gklasse" name="model" value="gklasse" />
+						<input type="checkbox" id="gklasse" name="model" value="g" />
 						<label for="gklasse">G-Klasse</label>
 					</div>
 					<div>
-						<input type="checkbox" id="glklasse" name="model" value="glklasse" />
+						<input type="checkbox" id="glklasse" name="model" value="gl" />
 						<label for="glklasse">GL-Klasse</label>
 					</div>
 					<div>
-						<input type="checkbox" id="sklasse" name="model" value="sklasse" />
+						<input type="checkbox" id="sklasse" name="model" value="s" />
 						<label for="sklasse">S-Klasse</label>
 					</div>
 					<div>
@@ -194,7 +239,55 @@
 					<c:forEach items="${cars}" var="car">
 						<div class="content-cars">
 							<p>
-								<option>${car}</option>
+							<div class="short-info">
+								<div class="picture">
+									<img src="static/images/commercial.jpg" height="130"
+										width="130" border="0">
+								</div>
+								<div class="block">
+									<div class="car">
+										<h6>${model}: ${car.model}</h6>
+									</div>
+									<div class="yearcar">
+										<h6>${year}: ${car.year}</h6>
+									</div>
+									<div class="carcasecar">
+										<h6>${carcase}: ${car.typeCarcase}</h6>
+									</div>
+									<div class="engineCapacity">
+										<h6>${engineCapacity}: ${car.engineCapacity}</h6>
+									</div>
+								</div>
+
+
+								<div class="block">
+									<div class="transmission">
+										<h6>${transmission}: ${car.transmission}</h6>
+									</div>
+									<div class="typeFuel">
+										<h6>${fuel}: ${car.typeFuel}</h6>
+									</div>
+									<div class="driveUnit">
+										<h6>${driveUnit}: ${car.driveUnit}</h6>
+									</div>
+									<div class="mileage">
+										<h6>${mileage}: ${car.mileage}</h6>
+									</div>
+								</div>
+
+
+								<div class="block">
+									<div class="price">
+										<h6>${price}: ${car.price}</h6>
+									</div>
+									<div class="date">
+										<h6>${date}: ${car.date}</h6>
+									</div>
+								</div>
+
+							</div>
+
+
 							<form action="Controller" method="get">
 								<input type="hidden" name="car" value="${car}"> <input
 									type="hidden" name="command" value="detail_vehicle" /> <input
@@ -238,13 +331,13 @@
 					</c:if>
 				</ul>
 			</div>
-			
-			
-			
-			
-			
+
+
+
+
+
 		</div>
-		
+
 		<div class="info">
 			<c:if test="${empty sessionScope.user}">
 				<c:out value="${information}" />

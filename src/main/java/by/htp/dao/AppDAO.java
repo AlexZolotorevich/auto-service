@@ -4,10 +4,12 @@ package by.htp.dao;
 import java.util.List;
 
 import by.htp.dao.exception.DAOException;
+import by.htp.entity.News;
 import by.htp.entity.User;
 import by.htp.entity.Vehicle;
 
 public interface AppDAO {
+	
 	
 	Integer getNumberOfRows() throws DAOException;
 	
@@ -22,7 +24,9 @@ public interface AppDAO {
 	void addVehicle(String model, String year, String typeCarcase, String price, String transmission, 
 					String typeFuel, String engineCapacity, String driveUnit, String mileage, Integer user_ID, String description, String date) throws DAOException;
 	
-	boolean addNews(String link, int Id, String date) throws DAOException;
+	boolean addNews(String title, String text, int Id, String date) throws DAOException;
+	
+	News getAllNews() throws DAOException;
 	
 	List<Vehicle> getNewCarsOfUsers() throws DAOException;
 	

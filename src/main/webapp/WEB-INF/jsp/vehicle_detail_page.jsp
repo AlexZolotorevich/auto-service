@@ -82,7 +82,7 @@ var="discriptionChoosedVehicle" />
 	</div>
 	<div class="text-info">
 		<h3>
-			${detailPage} ${discriptionChoosedVehicle}:
+			${detailPage}: </br>
 		</h3>
 	</div>
 	
@@ -113,10 +113,11 @@ var="discriptionChoosedVehicle" />
             </tr>
 	</table>
 	</br>
-	<h5>Shot description</h5>
+	<h5>${discriptionChoosedVehicle}:</h5></br>
 	<h5>${sessionScope.vehicle.description}</h5>
 </div>
 
+<c:if test="${not empty sessionScope.user}">
 <div class="profile">
 			
 			<form action="Controller" method="post">
@@ -125,9 +126,9 @@ var="discriptionChoosedVehicle" />
 					value="${toProfile}" />
 					</form>
 			
-		</div>
-		
-		
+		</div>		
+</c:if>		
+
 <div class="footer">
 		<jsp:include page="footer.jsp" />
 	</div>

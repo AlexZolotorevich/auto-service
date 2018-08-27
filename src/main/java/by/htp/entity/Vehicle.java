@@ -36,6 +36,9 @@ public class Vehicle implements Serializable{
 	/** ������ */
 	private String mileage;
 	
+	/** Date */
+	private String date;
+	
 	/** Description */
 	private String description;
 	
@@ -46,7 +49,7 @@ public class Vehicle implements Serializable{
 	
 	
 	/** Create Object*/
-	public Vehicle(int ID, String model, String year, String typeCarcase, String price, String transmission, String typeFuel, String engineCapacity, String driveUnit, String mileage) {
+	public Vehicle(int ID, String model, String year, String typeCarcase, String price, String transmission, String typeFuel, String engineCapacity, String driveUnit, String mileage, String date) {
 		this.ID = ID;
 		this.model = model;
 		this.year = year;
@@ -57,6 +60,7 @@ public class Vehicle implements Serializable{
 		this.engineCapacity = engineCapacity;
 		this.driveUnit = driveUnit;
 		this.mileage = mileage;
+		this.date = date;
 		
 	}
 	
@@ -70,6 +74,13 @@ public class Vehicle implements Serializable{
 	}
 
 
+	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
 	public int getID() {
 		return ID;
 	}
@@ -142,29 +153,25 @@ public class Vehicle implements Serializable{
 		this.description = description;
 	}
 
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (ID ^ (ID >>> 32));
+		result = prime * result + ID;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((driveUnit == null) ? 0 : driveUnit.hashCode());
 		result = prime * result + ((engineCapacity == null) ? 0 : engineCapacity.hashCode());
 		result = prime * result + ((mileage == null) ? 0 : mileage.hashCode());
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((transmission == null) ? 0 : transmission.hashCode());
-		result = prime * result + ((typeFuel == null) ? 0 : typeFuel.hashCode());
 		result = prime * result + ((typeCarcase == null) ? 0 : typeCarcase.hashCode());
+		result = prime * result + ((typeFuel == null) ? 0 : typeFuel.hashCode());
 		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
 	}
-
-
-
-
 
 
 	@Override
@@ -177,6 +184,16 @@ public class Vehicle implements Serializable{
 			return false;
 		Vehicle other = (Vehicle) obj;
 		if (ID != other.ID)
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
 			return false;
 		if (driveUnit == null) {
 			if (other.driveUnit != null)
@@ -208,15 +225,15 @@ public class Vehicle implements Serializable{
 				return false;
 		} else if (!transmission.equals(other.transmission))
 			return false;
-		if (typeFuel == null) {
-			if (other.typeFuel != null)
-				return false;
-		} else if (!typeFuel.equals(other.typeFuel))
-			return false;
 		if (typeCarcase == null) {
 			if (other.typeCarcase != null)
 				return false;
 		} else if (!typeCarcase.equals(other.typeCarcase))
+			return false;
+		if (typeFuel == null) {
+			if (other.typeFuel != null)
+				return false;
+		} else if (!typeFuel.equals(other.typeFuel))
 			return false;
 		if (year == null) {
 			if (other.year != null)
@@ -226,4 +243,7 @@ public class Vehicle implements Serializable{
 		return true;
 	}
 
+	
+	
+	
 }

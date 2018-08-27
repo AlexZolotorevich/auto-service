@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import by.htp.dao.AppDAO;
 import by.htp.dao.connection_pool.ConnectionPool;
 import by.htp.dao.exception.DAOException;
+import by.htp.entity.News;
 import by.htp.entity.User;
 import by.htp.entity.Vehicle;
 
@@ -75,9 +76,10 @@ public class AppDAOImpl implements AppDAO {
 				String engineCapacity = resultSet.getString(SQLquery.ENGINE_CAPACITY);
 				String driveUnit = resultSet.getString(SQLquery.DRIVE_UNIT);
 				String mileage = resultSet.getString(SQLquery.MILEAGE);
+				String date = resultSet.getString(SQLquery.DATE);
 
 				Vehicle vehicle = new Vehicle(ID, model, year, typeCarcase, price, transmission, typeFuel,
-						engineCapacity, driveUnit, mileage);
+						engineCapacity, driveUnit, mileage, date);
 				cars.add(vehicle);
 			}
 
@@ -157,16 +159,19 @@ public class AppDAOImpl implements AppDAO {
 	}
 
 	@Override
-	public boolean addNews(String link, int Id, String date) throws DAOException {
+	public boolean addNews(String title, String text, int Id, String date) throws DAOException {
 
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		PreparedStatement preparedStatement;
 
 		try (Connection connection = connectionPool.takeConnection()) {
 			preparedStatement = connection.prepareStatement(SQLquery.ADD_NEWS);
-			preparedStatement.setString(1, link);
-			preparedStatement.setInt(2, Id);
-
+			preparedStatement.setString(1, title);
+			preparedStatement.setString(2, text);
+			preparedStatement.setString(3, date);
+			preparedStatement.setInt(4, Id);
+			preparedStatement.execute();
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -180,7 +185,7 @@ public class AppDAOImpl implements AppDAO {
 	}
 
 	@Override
-	public List<Vehicle> getCarsByUser(Integer user_ID) throws DAOException {
+	public List<Vehicle> getCarsByUser(Integer userID) throws DAOException {
 
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
@@ -189,7 +194,7 @@ public class AppDAOImpl implements AppDAO {
 
 		try (Connection connection = connectionPool.takeConnection()) {
 			preparedStatement = connection.prepareStatement(SQLquery.SELECT_VEHICLES_BY_USER);
-			preparedStatement.setInt(1, user_ID);
+			preparedStatement.setInt(1, userID);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -203,9 +208,10 @@ public class AppDAOImpl implements AppDAO {
 				String engineCapacity = resultSet.getString(SQLquery.ENGINE_CAPACITY);
 				String driveUnit = resultSet.getString(SQLquery.DRIVE_UNIT);
 				String mileage = resultSet.getString(SQLquery.MILEAGE);
+				String date = resultSet.getString(SQLquery.DATE);
 
 				Vehicle vehicle = new Vehicle(ID, model, year, typeCarcase, price, transmission, typeFuel,
-						engineCapacity, driveUnit, mileage);
+						engineCapacity, driveUnit, mileage, date);
 				cars.add(vehicle);
 			}
 
@@ -246,9 +252,10 @@ public class AppDAOImpl implements AppDAO {
 				String engineCapacity = resultSet.getString(SQLquery.ENGINE_CAPACITY);
 				String driveUnit = resultSet.getString(SQLquery.DRIVE_UNIT);
 				String mileage = resultSet.getString(SQLquery.MILEAGE);
+				String date = resultSet.getString(SQLquery.DATE);
 
 				vehicle = new Vehicle(ID, model, year, typeCarcase, price, transmission, typeFuel, engineCapacity,
-						driveUnit, mileage);
+						driveUnit, mileage, date);
 			}
 
 			preparedStatement = connection.prepareStatement(SQLquery.SELECT_DESCRIPTION_BY_ID);
@@ -323,9 +330,10 @@ public class AppDAOImpl implements AppDAO {
 				String engineCapacity = resultSet.getString(SQLquery.ENGINE_CAPACITY);
 				String driveUnit = resultSet.getString(SQLquery.DRIVE_UNIT);
 				String mileage = resultSet.getString(SQLquery.MILEAGE);
+				String date = resultSet.getString(SQLquery.DATE);
 
 				vehicle = new Vehicle(ID, model, year, typeCarcase, price, transmission, typeFuel, engineCapacity,
-						driveUnit, mileage);
+						driveUnit, mileage, date);
 				cars.add(vehicle);
 			}
 
@@ -449,6 +457,14 @@ public class AppDAOImpl implements AppDAO {
 			throw new DAOException("InterruptedException", e);
 		}
 		
+	}
+
+
+
+	@Override
+	public News getAllNews() throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

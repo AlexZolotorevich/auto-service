@@ -44,5 +44,6 @@ public class ConstantParam {
 	public static final String TITLE = "title";
 	public static final String TEXT = "text";
 	public static final String ALL_USERS = "allUsers";
+	public static final String NEWS = "news";
 	
 }

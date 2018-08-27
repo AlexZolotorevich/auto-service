@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 import by.htp.dao.AppDAO;
 import by.htp.dao.DAOFactory;
 import by.htp.dao.exception.DAOException;
+import by.htp.entity.News;
 import by.htp.entity.PageInformation;
 import by.htp.entity.User;
 import by.htp.entity.Vehicle;
@@ -112,84 +113,15 @@ public class AppServiceImpl implements AppService {
 
 		String date = takeDate();
 
-		if (title != null && text != null) {
-			String link = createText(title, text);
-
 			try {
-				appDAO.addNews(link, (int) Id, date);
+				appDAO.addNews(title, text, (int) Id, date);
 
 			} catch (DAOException e) {
 				logger.warn("ServletException in AppService", e);
 				throw new ServiceException("ServiceException", e);
 			}
-		}
-
+		
 		return true;
-	}
-
-	/** create file with text */
-	public String createText(String title, String text) {
-
-		final String PATH = "webapp\\static\\news";
-
-		PrintWriter writer = null;
-		String link = PATH + title + ".doc";
-		String temp = "";
-		int j = 0;
-		try {
-			writer = new PrintWriter(link, "UTF-8");
-			for (int i = 0; i < text.length(); i++) {
-				if (i % 120 == 0) {
-					temp = text.substring(j, i);
-					writer.println(temp);
-					temp = "";
-					j = i;
-				}
-			}
-			temp = text.substring(j, text.length());
-			writer.println(temp);
-			temp = "";
-			writer.close();
-
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			logger.warn("FileNotFoundException | UnsupportedEncodingException in AppService", e);
-
-		} finally {
-			writer.close();
-		}
-		return link;
-
-	}
-
-	/** create List of text */
-	public List<String> getText(String title) {
-
-		Path file = Paths.get(title);
-		BufferedReader reader = null;
-		String line;
-		List<String> array = new ArrayList<String>();
-
-		if (Files.exists(file) && Files.isReadable(file)) {
-			try {
-				reader = Files.newBufferedReader(file, Charset.defaultCharset());
-				while ((line = reader.readLine()) != null) {
-
-					array.add(line);
-				}
-
-			} catch (IOException e) {
-				logger.warn("Exception in AppService", e);
-			} finally {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					logger.warn("IOException in AppService", e);
-
-				}
-			}
-		}
-
-		return array;
 	}
 
 	/** get cars of user (admit userID) */
@@ -208,6 +140,7 @@ public class AppServiceImpl implements AppService {
 		return cars;
 	}
 
+	
 	/** get car using ID */
 	@Override
 	public Vehicle getCarByID(String vehicleID) throws ServiceException {
@@ -224,7 +157,7 @@ public class AppServiceImpl implements AppService {
 		return vehicle;
 	}
 
-	/** gelete vehicle by ID */
+	/** delete vehicle by ID */
 	@Override
 	public void deleteVehicleByID(String vehicle_ID) throws ServiceException {
 
@@ -247,10 +180,6 @@ public class AppServiceImpl implements AppService {
 
 		try {
 			cars = appDAO.getNewCarsOfUsers();
-
-			for (Vehicle s : cars) {
-				System.out.println(s);
-			}
 
 		} catch (DAOException e) {
 			logger.warn("ServletException in AppService", e);
@@ -313,8 +242,10 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void toBanUser(String userId) throws ServiceException {
 		Integer userID = Integer.parseInt(userId);
+		
 		try {
 			appDAO.toBanUser(userID);
+			
 		} catch (DAOException e) {
 			logger.warn("ServletException in AppService", e);
 			throw new ServiceException("ServiceException", e);
@@ -325,5 +256,21 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public PageInformation getPageInfo() {
 		return pageInfo;
+	}
+
+	@Override
+	public News getAllNews() throws ServiceException {
+		
+		News news;
+		
+		try {
+			news = appDAO.getAllNews();
+			
+		} catch (DAOException e) {
+			logger.warn("ServletException in AppService", e);
+			throw new ServiceException("ServiceException", e);
+		}
+		
+		return news;
 	}
 }
