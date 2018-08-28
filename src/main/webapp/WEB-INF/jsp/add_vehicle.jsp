@@ -10,7 +10,6 @@
 <fmt:message bundle="${loc}" key="common.header.home.text" var="home" />
 <fmt:message bundle="${loc}" key="common.sales_page.accept.text"
 	var="accept" />
-
 <fmt:message bundle="${loc}" key="common.error.checkModel.text"
 	var="incorrectModel" />
 <fmt:message bundle="${loc}" key="common.error.checkYear.text"
@@ -30,7 +29,29 @@
 <fmt:message bundle="${loc}" key="common.error.checkMileage.text"
 	var="incorrectMileage" />
 
+<fmt:message bundle="${loc}" key="common.sales_page.choosePicture.text"
+	var="choosePicture" />	
 
+<fmt:message bundle="${loc}" key="common.salespage.chooseModel.text"
+	var="chooseModel" />
+<fmt:message bundle="${loc}" key="common.salespage.chooseYear.text"
+	var="chooseYear" />	
+<fmt:message bundle="${loc}" key="common.salespage.price.text"
+	var="choosePrice" />	
+	<fmt:message bundle="${loc}" key="common.salespage.typeCarcase.text"
+	var="chooseCarcase" />
+<fmt:message bundle="${loc}" key="common.salespage.typeTransmission.text"
+	var="chooseTransmission" />
+	<fmt:message bundle="${loc}" key="common.salespage.typeFuel.text"
+	var="chooseTypeFuel" />
+	<fmt:message bundle="${loc}" key="common.salespage.chooseDriveUnit.text"
+	var="chooseDriveUnit" />
+	<fmt:message bundle="${loc}" key="common.salespage.engineCapacity.text"
+	var="chooseEngineCapacity" />
+	<fmt:message bundle="${loc}" key="common.salespage.mileage.text"
+	var="mileage" />
+	
+	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
@@ -43,6 +64,16 @@
 
 <body>
 	<style>
+.common {
+	margin: 30px;
+	padding-top: 15px;
+	background: 3px solid #e8e8e8;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+	width: 800px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
 .addvehicle {
 	width: 500; /* Ширина слоя в пикселах */
 	padding: 10px; /* Поля вокруг текста */
@@ -52,83 +83,90 @@
 	display: block;
 }
 
-.model {
+.footer {
 	clear: both;
-	float: left;
+}
+
+.errors {
+margin-top: 30px;
+	margin-left: 350px;
+	width: 400px;
+	border-color: #484848; /* Цвет границы */
+	border-style: solid; /* Стиль границы */
+	padding: 5px; /* Поля вокруг текста */
+	color: #484848;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.year {
-	clear: both;
+.description-text {
+	margin-top: 10px;
+	width: 180px;
+	margin-left: 150px;
 	float: left;
 }
 
-.price {
-	clear: both;
-	float: left;
+.choosing {
+	margin-left: 330px;
+	width: 300px;
 }
 
-.carcase {
-	clear: both;
-	float: left;
+.text-inner {
+	height: 33px;
+	text-align: left;
 }
 
-.fuel {
-	clear: both;
-	float: left;
-}
-
-.transmission {
-	clear: both;
-	float: left;
-}
-
-.engine-capacity {
-	clear: both;
-	float: left;
-}
-
-.drive-unit {
-	clear: both;
-	float: left;
-}
-
-.mileage {
-	clear: both;
-	float: left;
-}
-
-.input {
-	clear: both;
-	float: left;
-}
-
-.button {
-	clear: both;
-	float: left;
-}
-
-.footer {
-	clear: both;
-}
-.errors{
-	margin-left: 500px;
-	width: 400px;
- 	border-color: #484848; /* Цвет границы */
-    border-style: solid; /* Стиль границы */
-    padding: 5px; /* Поля вокруг текста */
-    color: #484848;
+#inlineFormCustomSelect {
+	width: 220px;
 }
 </style>
 	<jsp:include page="header.jsp" />
 
 	<form action="Controller" method="post">
-		<div class="addvehicle">
+		<div class="common">
 			<input type="hidden" name="command" value="add_vehicle" />
+			<div class="description-text">
+				<div class="text-inner">
+					<h6>${chooseModel}:</h6>
+				</div>
 
-			<div class="model">
-				<a class="text-menu">Choose a model:</a> <select name="model">
+				<div class="text-inner">
+					<h6>${chooseYear}:</h6>
+				</div>
+
+				<div class="text-inner">
+					<h6>${choosePrice}:</h6>
+				</div>
+
+				<div class="text-inner">
+					<h6>${chooseCarcase}:</h6>
+				</div>
+
+				<div class="text-inner">
+					<h6>${chooseTransmission}:</h6>
+				</div>
+
+				<div class="text-inner">
+					<h6>${chooseTypeFuel}:</h6>
+				</div>
+
+				<div class="text-inner">
+					<h6>${chooseEngineCapacity}:</h6>
+				</div>
+
+				<div class="text-inner">
+					<h6>${chooseDriveUnit}:</h6>
+				</div>
+
+				<div class="text-inner">
+					<h6>${mileage}:</h6>
+				</div>
+
+			</div>
+
+			<div class="choosing">
+
+				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
 					<option value="">choose a model</option>
 					<option value="a">A</option>
 					<option value="b">B</option>
@@ -138,128 +176,117 @@
 					<option value="gl">GL</option>
 					<option value="amg">AMG</option>
 				</select>
-			</div>
 
-			<div class="year">
-				<a class="text-menu">Choose a year:</a> <input
-					class="btn btn-outline-secondary" type="text" name="year"
-					placeholder="Year"></br>
-			</div>
 
-			<div class="price">
-				<a class="text-menu">Price:</a> <input
-					class="btn btn-outline-secondary" type="text" name="price"
-					placeholder="Price"></br>
+				<div class="year">
+					<input class="btn btn-outline-secondary" type="text" name="year"
+						placeholder="Year"></br>
+				</div>
 
-			</div>
+				<div class="price">
+					<input class="btn btn-outline-secondary" type="text" name="price"
+						placeholder="Price"></br>
 
-			<div class="carcase">
-				<a class="text-menu ">Choose a body:</a> <select name="carcase">
+				</div>
+
+
+				<select class="custom-select " id="inlineFormCustomSelect">
 					<option value="">choose a body</option>
 					<option value="sedan">sedan</option>
 					<option value="coupe">coupe</option>
 					<option value="vagon">vagon</option>
-				</select>
-			</div>
-
-			<div class="transmission">
-				<a class="text-menu">Choose a transmission:</a> <select
-					name="transmission">
+				</select> <select class="custom-select " id="inlineFormCustomSelect">
 					<option value="">choose a transmission</option>
 					<option value="automatic">Automatic</option>
 					<option value="manual">Manual</option>
-				</select>
-			</div>
-
-			<div class="fuel">
-				<a class="text-menu">Fuel:</a> <select name="fuel">
+				</select> <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
 					<option value="">choose a fuel</option>
 					<option value="petrol">petrol</option>
 					<option value="diesel">diesel</option>
 				</select>
-			</div>
 
-			<div class="engine-capacity">
-				<a class="text-menu">Engine capacity:</a> <input
-					class="btn btn-outline-secondary" type="text" name="engine"
-					placeholder="Engine capacity"></br>
-			</div>
 
-			<div class="drive-unit">
-				<a class="text-menu">Drive unit:</a> <select name="driveUnit">
+				<div class="engine-capacity">
+					<input class="btn btn-outline-secondary" type="text" name="engine"
+						placeholder="Engine capacity"></br>
+				</div>
+
+
+				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
 					<option value="">choose a drive unit</option>
 					<option value="4WD">4WD</option>
 					<option value="fwd">front-wheel drive</option>
 					<option value="rwd">rear drive</option>
 				</select>
-			</div>
 
-			<div class="mileage">
-				<a class="text-menu">Mileage:</a> <input
-					class="btn btn-outline-secondary" type="text" name="mileAge"
-					placeholder="mileage"></br>
-			</div>
 
-			<div class="description">
-				<textarea rows="5" cols="60" name="description"
-					placeholder="Your description"></textarea>
-			</div>
-
-			<div class="input">
-				<input type="file" name="image" multiple="multiple"
-					accept="image/jpeg">
-			</div>
-
-			<div class="user_ID">
-				<input type="hidden" name="user_ID" value="${sessionScope.user.id}">
-			</div>
-
-			<input class="button btn btn-outline-secondary" type="submit"
-				value="${accept}" />
-		</div>
-
-		<i> <c:if test="${not empty requestScope.errorMessage}">
-				<div class="errors">
-					<c:forEach items="${requestScope.errorMessage}" var="error">
-						<c:if test="${error.contains('model')}">
-							<c:out value="${incorrectModel}" />
-						</c:if>
-
-						<c:if test="${error.contains('year')}">
-							<c:out value="${incorrectYear}" />
-						</c:if>
-
-						<c:if test="${error.contains('carcase')}">
-							<c:out value="${incorrectCarcase}" />
-						</c:if>
-
-						<c:if test="${error.contains('price')}">
-							<c:out value="${incorrectPrice}" />
-						</c:if>
-
-						<c:if test="${error.contains('transmission')}">
-							<c:out value="${incorrectTransmission}" />
-						</c:if>
-
-						<c:if test="${error.contains('typeFuel')}">
-							<c:out value="${incorrectTypeFuel}" />
-						</c:if>
-
-						<c:if test="${error.contains('engineCapacity')}">
-							<c:out value="${incorrectEngineCapacity}" />
-						</c:if>
-
-						<c:if test="${error.contains('driveUnit')}">
-							<c:out value="${incorrectDriveUnit}" />
-						</c:if>
-
-						<c:if test="${error.contains('mileage')}">
-							<c:out value="${incorrectMileage}" />
-						</c:if>
-					</c:forEach>
+				<div class="mileage">
+					<input class="btn btn-outline-secondary" type="text" name="mileAge"
+						placeholder="mileage"></br>
 				</div>
-			</c:if>
-		</i><br />
+
+				
+					<textarea class="form-control" rows="5" cols="40" name="description"
+						placeholder="Your description"></textarea>
+				
+
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" id="inputGroupFile01" name="image" 
+						accept="image/jpeg">
+						<label class="custom-file-label" for="inputGroupFile01">${choosePicture}</label>
+				</div>
+
+				<div class="user_ID">
+					<input type="hidden" name="user_ID" value="${sessionScope.user.id}">
+				</div>
+
+				<input class="button btn btn-outline-secondary" type="submit"
+					value="${accept}" />
+			</div>
+
+			<i> <c:if test="${not empty requestScope.errorMessage}">
+					<div class="errors">
+						<c:forEach items="${requestScope.errorMessage}" var="error">
+							<c:if test="${error.contains('model')}">
+								<c:out value="${incorrectModel}" />
+							</c:if>
+
+							<c:if test="${error.contains('year')}">
+								<c:out value="${incorrectYear}" />
+							</c:if>
+
+							<c:if test="${error.contains('carcase')}">
+								<c:out value="${incorrectCarcase}" />
+							</c:if>
+
+							<c:if test="${error.contains('price')}">
+								<c:out value="${incorrectPrice}" />
+							</c:if>
+
+							<c:if test="${error.contains('transmission')}">
+								<c:out value="${incorrectTransmission}" />
+							</c:if>
+
+							<c:if test="${error.contains('typeFuel')}">
+								<c:out value="${incorrectTypeFuel}" />
+							</c:if>
+
+							<c:if test="${error.contains('engineCapacity')}">
+								<c:out value="${incorrectEngineCapacity}" />
+							</c:if>
+
+							<c:if test="${error.contains('driveUnit')}">
+								<c:out value="${incorrectDriveUnit}" />
+							</c:if>
+
+							<c:if test="${error.contains('mileage')}">
+								<c:out value="${incorrectMileage}" />
+							</c:if>
+						</c:forEach>
+					</div>
+				</c:if>
+			</i><br />
+		</div>
 	</form>
 
 

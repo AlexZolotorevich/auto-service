@@ -456,7 +456,7 @@ public class AppDAOImpl implements AppDAO {
 		try(Connection connection = connectionPool.takeConnection()){
 			preparedStatement = connection.prepareStatement(SQLquery.BAN_USER);
 			preparedStatement.setInt(1, userID);
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			
 		}catch(SQLException e) {
 			logger.fatal("SQLException in DAO impl", e);

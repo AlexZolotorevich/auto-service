@@ -2,7 +2,6 @@ package by.htp.controller.impl;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,18 +14,17 @@ import by.htp.service.exception.ServiceException;
 
 public class BanUser implements Command{
 
+	private final static String command = "?command=get_all_users";
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userID = request.getParameter(ConstantParam.USER_ID);
 		AppService appService = ServiceFactory.getInstance().getAppService();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.GET_ALL_USERS);
-		dispatcher.forward(request, response);
-		
 		try {
 			appService.toBanUser(userID);
 			
+			response.sendRedirect(request.getRequestURL() + command);
 		} catch (ServiceException e) {
 			response.sendRedirect(PagePath.ERROR_PAGE);
 		}

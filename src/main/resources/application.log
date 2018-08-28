@@ -3313,3 +3313,237 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown co
 2018-08-28 13:35:07 INFO [http-nio-8080-exec-1]: User entered incorrect price
 2018-08-28 13:35:07 INFO [http-nio-8080-exec-1]: User entered incorrect engine capacity
 2018-08-28 13:35:07 INFO [http-nio-8080-exec-1]: User entered incorrect mileage
+2018-08-28 14:57:40 INFO [http-nio-8080-exec-2]: User entered incorrect year
+2018-08-28 14:57:40 INFO [http-nio-8080-exec-2]: User entered incorrect price
+2018-08-28 14:57:40 INFO [http-nio-8080-exec-2]: User entered incorrect engine capacity
+2018-08-28 14:57:40 INFO [http-nio-8080-exec-2]: User entered incorrect mileage
+2018-08-28 14:57:55 INFO [http-nio-8080-exec-7]: User entered incorrect year
+2018-08-28 14:57:55 INFO [http-nio-8080-exec-7]: User entered incorrect price
+2018-08-28 14:57:55 INFO [http-nio-8080-exec-7]: User entered incorrect engine capacity
+2018-08-28 14:57:55 INFO [http-nio-8080-exec-7]: User entered incorrect mileage
+2018-08-28 14:58:16 INFO [http-nio-8080-exec-1]: User entered incorrect year
+2018-08-28 14:58:16 INFO [http-nio-8080-exec-1]: User entered incorrect price
+2018-08-28 14:58:16 INFO [http-nio-8080-exec-1]: User entered incorrect engine capacity
+2018-08-28 14:58:16 INFO [http-nio-8080-exec-1]: User entered incorrect mileage
+2018-08-28 14:58:17 INFO [http-nio-8080-exec-2]: User entered incorrect year
+2018-08-28 14:58:17 INFO [http-nio-8080-exec-2]: User entered incorrect price
+2018-08-28 14:58:17 INFO [http-nio-8080-exec-2]: User entered incorrect engine capacity
+2018-08-28 14:58:17 INFO [http-nio-8080-exec-2]: User entered incorrect mileage
+2018-08-28 15:00:28 INFO [http-nio-8080-exec-5]: User entered incorrect year
+2018-08-28 15:00:28 INFO [http-nio-8080-exec-5]: User entered incorrect price
+2018-08-28 15:00:28 INFO [http-nio-8080-exec-5]: User entered incorrect engine capacity
+2018-08-28 15:00:28 INFO [http-nio-8080-exec-5]: User entered incorrect mileage
+2018-08-28 15:00:49 INFO [http-nio-8080-exec-3]: User entered incorrect year
+2018-08-28 15:00:49 INFO [http-nio-8080-exec-3]: User entered incorrect price
+2018-08-28 15:00:49 INFO [http-nio-8080-exec-3]: User entered incorrect engine capacity
+2018-08-28 15:00:49 INFO [http-nio-8080-exec-3]: User entered incorrect mileage
+2018-08-28 15:30:43 INFO [http-nio-8080-exec-10]: User entered incorrect year
+2018-08-28 15:30:43 INFO [http-nio-8080-exec-10]: User entered incorrect price
+2018-08-28 15:30:43 INFO [http-nio-8080-exec-10]: User entered incorrect engine capacity
+2018-08-28 15:30:43 INFO [http-nio-8080-exec-10]: User entered incorrect mileage
+2018-08-28 15:30:58 INFO [http-nio-8080-exec-1]: User entered incorrect year
+2018-08-28 15:30:58 INFO [http-nio-8080-exec-1]: User entered incorrect price
+2018-08-28 15:30:58 INFO [http-nio-8080-exec-1]: User entered incorrect engine capacity
+2018-08-28 15:30:58 INFO [http-nio-8080-exec-1]: User entered incorrect mileage
+2018-08-28 15:35:04 INFO [http-nio-8080-exec-8]: User entered incorrect year
+2018-08-28 15:35:04 INFO [http-nio-8080-exec-8]: User entered incorrect price
+2018-08-28 15:35:04 INFO [http-nio-8080-exec-8]: User entered incorrect engine capacity
+2018-08-28 15:35:04 INFO [http-nio-8080-exec-8]: User entered incorrect mileage
+2018-08-28 15:52:12 INFO [http-nio-8080-exec-33]: User entered incorrect year
+2018-08-28 15:52:12 INFO [http-nio-8080-exec-33]: User entered incorrect price
+2018-08-28 15:52:12 INFO [http-nio-8080-exec-33]: User entered incorrect engine capacity
+2018-08-28 15:52:12 INFO [http-nio-8080-exec-33]: User entered incorrect mileage
+2018-08-28 15:52:30 INFO [http-nio-8080-exec-28]: User entered incorrect year
+2018-08-28 15:52:30 INFO [http-nio-8080-exec-28]: User entered incorrect price
+2018-08-28 15:52:30 INFO [http-nio-8080-exec-28]: User entered incorrect engine capacity
+2018-08-28 15:52:30 INFO [http-nio-8080-exec-28]: User entered incorrect mileage
+2018-08-28 15:52:43 INFO [http-nio-8080-exec-35]: User entered incorrect year
+2018-08-28 15:52:43 INFO [http-nio-8080-exec-35]: User entered incorrect price
+2018-08-28 15:52:43 INFO [http-nio-8080-exec-35]: User entered incorrect engine capacity
+2018-08-28 15:52:43 INFO [http-nio-8080-exec-35]: User entered incorrect mileage
+2018-08-28 15:58:51 FATAL[http-nio-8080-exec-10]: SQLException in DAO impl
+java.sql.SQLException: Can not issue data manipulation statements with executeQuery().
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.StatementImpl.checkForDml(StatementImpl.java:412)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1794)
+	at by.htp.dao.impl.AppDAOImpl.toBanUser(AppDAOImpl.java:459)
+	at by.htp.service.impl.AppServiceImpl.toBanUser(AppServiceImpl.java:247)
+	at by.htp.controller.impl.BanUser.execute(BanUser.java:28)
+	at by.htp.controller.Controller.execute(Controller.java:31)
+	at by.htp.controller.Controller.doPost(Controller.java:22)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.XSSFilter.doFilter(XSSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.LocFilter.doFilter(LocFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:651)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:412)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:754)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1385)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2018-08-28 15:58:51 WARN [http-nio-8080-exec-10]: ServletException in AppService in the method toBanUser
+by.htp.dao.exception.DAOException: SQLException
+	at by.htp.dao.impl.AppDAOImpl.toBanUser(AppDAOImpl.java:463)
+	at by.htp.service.impl.AppServiceImpl.toBanUser(AppServiceImpl.java:247)
+	at by.htp.controller.impl.BanUser.execute(BanUser.java:28)
+	at by.htp.controller.Controller.execute(Controller.java:31)
+	at by.htp.controller.Controller.doPost(Controller.java:22)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.XSSFilter.doFilter(XSSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.LocFilter.doFilter(LocFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:651)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:412)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:754)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1385)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.sql.SQLException: Can not issue data manipulation statements with executeQuery().
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.StatementImpl.checkForDml(StatementImpl.java:412)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1794)
+	at by.htp.dao.impl.AppDAOImpl.toBanUser(AppDAOImpl.java:459)
+	... 37 more
+2018-08-28 16:00:06 FATAL[http-nio-8080-exec-8]: SQLException in DAO impl
+java.sql.SQLException: Can not issue data manipulation statements with executeQuery().
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.StatementImpl.checkForDml(StatementImpl.java:412)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1794)
+	at by.htp.dao.impl.AppDAOImpl.toBanUser(AppDAOImpl.java:459)
+	at by.htp.service.impl.AppServiceImpl.toBanUser(AppServiceImpl.java:247)
+	at by.htp.controller.impl.BanUser.execute(BanUser.java:28)
+	at by.htp.controller.Controller.execute(Controller.java:31)
+	at by.htp.controller.Controller.doPost(Controller.java:22)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.XSSFilter.doFilter(XSSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.LocFilter.doFilter(LocFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:651)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:412)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:754)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1385)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2018-08-28 16:00:06 WARN [http-nio-8080-exec-8]: ServletException in AppService in the method toBanUser
+by.htp.dao.exception.DAOException: SQLException
+	at by.htp.dao.impl.AppDAOImpl.toBanUser(AppDAOImpl.java:463)
+	at by.htp.service.impl.AppServiceImpl.toBanUser(AppServiceImpl.java:247)
+	at by.htp.controller.impl.BanUser.execute(BanUser.java:28)
+	at by.htp.controller.Controller.execute(Controller.java:31)
+	at by.htp.controller.Controller.doPost(Controller.java:22)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.XSSFilter.doFilter(XSSFilter.java:27)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.LocFilter.doFilter(LocFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at by.htp.controller.filter.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:651)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:412)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:754)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1385)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.sql.SQLException: Can not issue data manipulation statements with executeQuery().
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1055)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:926)
+	at com.mysql.jdbc.StatementImpl.checkForDml(StatementImpl.java:412)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:1794)
+	at by.htp.dao.impl.AppDAOImpl.toBanUser(AppDAOImpl.java:459)
+	... 37 more

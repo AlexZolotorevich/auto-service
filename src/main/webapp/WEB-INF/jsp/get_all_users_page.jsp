@@ -31,8 +31,9 @@
 				<div class="content-cars">
 					<p>${user}</p>
 					<form action="Controller" method="post">
+					<input type="hidden" name="car" value="${user}"> 
 						<input type="hidden" name="command" value="ban_user" /> 
-						<input type="hidden" name="vehicle_ID" value="${user.id}">
+						<input type="hidden" name="user_ID" value="${user.id}">
 						<input class="btn btn-outline-secondary" type="submit" value="${ban}" />
 					</form>
 				</div>
