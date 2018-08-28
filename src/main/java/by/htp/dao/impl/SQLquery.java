@@ -40,6 +40,7 @@ public class SQLquery {
 	/** sql querry for vehicle and users admin*/
 	public static final String SELECT_NEW_CARS = "SELECT * FROM `service-mercedes`.vehicle WHERE status='0'";
 	public static final String ADD_NEWS = "INSERT INTO `service-mercedes`.`news`(title, text, date, user_ID) VALUES (?,?,?,?)";
+	public static final String GET_NEWS = "SELECT ID, title, text, date, user_ID FROM `service-mercedes`.`news`LIMIT 5";
 	public static final String ACCEPT_VEHICLE = "UPDATE `service-mercedes`.vehicle SET status='1' WHERE ID= ?";
 	public static final String GET_ALL_USERS = "SELECT * FROM `service-mercedes`.user WHERE role='user'";
 	public static final String BAN_USER = "UPDATE `service-mercedes`.vehicle SET status='-1' WHERE ID= ?";
@@ -68,6 +69,7 @@ public class SQLquery {
 	public static final String DESCRIPTION = "linkDescription";
 	public static final String COUNT_ID = "COUNT(ID)";
 	
-	
-	
+	public static final String TITLE = "title";
+	public static final String TEXT = "text";
+	public static final String USER_ID = "user_ID";
 }

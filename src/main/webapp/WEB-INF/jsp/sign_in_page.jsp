@@ -48,9 +48,11 @@
 	padding-right: 10px;
 	color: #cccfd1;
 	padding-top: 10px;
-	
 }
-
+.text-inner{
+	height: 35px;
+	text-align: left;
+}
 </style>
 
 	<div class="container-fluid p-0">
@@ -61,22 +63,20 @@
 	<p>
 	<div class="block">
 		<div class="text">
-		<h6>${login}:</h6>
-		<h6>${password}:</h6>
+			<div class="text-inner"><h6>${login}:</h6></div>
+			<div class="text-inner"><h6>${password}:</h6></div>
 		</div>
-		
+
 		<div class="command">
 			<form action="Controller" method="post">
 
-				<input type="hidden" name="command" value="sign_in" />
-				
-				<input class="btn btn-outline-secondary" type="text" name="login"
-					placeholder="login"></br>
-				
-				<input class="btn btn-outline-secondary" type="password"
-					name="password" placeholder="password"></br> <input
+				<input type="hidden" name="command" value="sign_in" /> <input
+					class="btn btn-outline-secondary" type="text" name="login"
+					placeholder="login"></br> <input
+					class="btn btn-outline-secondary" type="password" name="password"
+					placeholder="password"></br> <input
 					class="btn btn-outline-secondary" type="submit" value="accept">
-					</form>
+			</form>
 		</div>
 
 
@@ -100,7 +100,7 @@
 					</div>
 				</c:if>
 			</i><br />
-		
+		</div>
 	</div>
 	<div class="footer">
 		<jsp:include page="footer.jsp" />

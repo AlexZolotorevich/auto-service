@@ -472,7 +472,41 @@ public class AppDAOImpl implements AppDAO {
 
 
 	@Override
-	public News getAllNews() throws DAOException {
+	public List<News> getAllNews() throws DAOException {
+		Statement statement;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		ResultSet resultSet;
+		List<News> newsList = new ArrayList<News>();
+		
+		try(Connection connection = connectionPool.takeConnection()){
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(SQLquery.GET_NEWS);
+			
+			while(resultSet.next()) {
+				long ID = resultSet.getLong(SQLquery.ID);
+				String title = resultSet.getString(SQLquery.TITLE);
+				String text = resultSet.getString(SQLquery.TEXT);
+				String date = resultSet.getString(SQLquery.DATE);
+				int userID = resultSet.getInt(SQLquery.USER_ID);
+				News news = new News(ID, title, text, date, userID);
+				newsList.add(news);
+			}
+			
+		}catch(SQLException e) {
+			logger.fatal("SQLException in DAO impl", e);
+			throw new DAOException("SQLException", e);
+			
+		}catch(InterruptedException e) {
+			logger.fatal("InterruptedException in DAO impl", e);
+			throw new DAOException("InterruptedException", e);
+		}
+		return newsList;
+	}
+
+
+	@Override
+	public List<Vehicle> filtrateVehicle() throws DAOException {
+		
 		
 		return null;
 	}

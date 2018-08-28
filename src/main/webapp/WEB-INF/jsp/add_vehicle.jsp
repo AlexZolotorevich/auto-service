@@ -8,7 +8,27 @@
 <fmt:setLocale value="${sessionScope.local}" />
 <fmt:setBundle basename="local" var="loc" />
 <fmt:message bundle="${loc}" key="common.header.home.text" var="home" />
-<fmt:message bundle="${loc}" key="common.sales_page.accept.text" var="accept" />
+<fmt:message bundle="${loc}" key="common.sales_page.accept.text"
+	var="accept" />
+
+<fmt:message bundle="${loc}" key="common.error.checkModel.text"
+	var="incorrectModel" />
+<fmt:message bundle="${loc}" key="common.error.checkYear.text"
+	var="incorrectYear" />
+<fmt:message bundle="${loc}" key="common.error.checkCarcase.text"
+	var="incorrectCarcase" />
+<fmt:message bundle="${loc}" key="common.error.checkPrice.text"
+	var="incorrectPrice" />
+<fmt:message bundle="${loc}" key="common.error.checkTransmission.text"
+	var="incorrectTransmission" />
+<fmt:message bundle="${loc}" key="common.error.checkTypeFuel.text"
+	var="incorrectTypeFuel" />
+<fmt:message bundle="${loc}" key="common.error.checkEngineCapacity.text"
+	var="incorrectEngineCapacity" />
+<fmt:message bundle="${loc}" key="common.error.checkDriveUnit.text"
+	var="incorrectDriveUnit" />
+<fmt:message bundle="${loc}" key="common.error.checkMileage.text"
+	var="incorrectMileage" />
 
 
 <head>
@@ -22,35 +42,31 @@
 </head>
 
 <body>
-<style>
-.addvehicle{
+	<style>
+.addvehicle {
 	width: 500; /* Ширина слоя в пикселах */
-	 
 	padding: 10px; /* Поля вокруг текста */
 	text-align: center; /* Выравнивание содержимого слоя по левому краю */
 	margin-left: auto;
-    margin-right: auto;
-    display: block;
+	margin-right: auto;
+	display: block;
 }
 
 .model {
 	clear: both;
 	float: left;
-	
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
 }
 
 .year {
 	clear: both;
 	float: left;
-	
 }
 
 .price {
 	clear: both;
 	float: left;
-	
 }
 
 .carcase {
@@ -82,25 +98,34 @@
 	clear: both;
 	float: left;
 }
-.input{
+
+.input {
 	clear: both;
 	float: left;
 }
+
 .button {
 	clear: both;
 	float: left;
 }
-.footer{
-	clear: both;
-	
-}
 
+.footer {
+	clear: both;
+}
+.errors{
+	margin-left: 500px;
+	width: 400px;
+ 	border-color: #484848; /* Цвет границы */
+    border-style: solid; /* Стиль границы */
+    padding: 5px; /* Поля вокруг текста */
+    color: #484848;
+}
 </style>
 	<jsp:include page="header.jsp" />
 
-		<form action="Controller" method="post">
-			<div class="addvehicle">
-				<input type="hidden" name="command" value="add_vehicle" />
+	<form action="Controller" method="post">
+		<div class="addvehicle">
+			<input type="hidden" name="command" value="add_vehicle" />
 
 			<div class="model">
 				<a class="text-menu">Choose a model:</a> <select name="model">
@@ -174,26 +199,71 @@
 					class="btn btn-outline-secondary" type="text" name="mileAge"
 					placeholder="mileage"></br>
 			</div>
-			
+
 			<div class="description">
-				<textarea rows="20" cols="120" name="description" placeholder="Your description"></textarea>
+				<textarea rows="5" cols="60" name="description"
+					placeholder="Your description"></textarea>
 			</div>
-			
+
 			<div class="input">
-			<input type="file" name="image" multiple="multiple" accept="image/jpeg">
+				<input type="file" name="image" multiple="multiple"
+					accept="image/jpeg">
 			</div>
-			
+
 			<div class="user_ID">
 				<input type="hidden" name="user_ID" value="${sessionScope.user.id}">
 			</div>
-			
+
 			<input class="button btn btn-outline-secondary" type="submit"
 				value="${accept}" />
-			</div>
-		</form>
-		
-		
-	
+		</div>
+
+		<i> <c:if test="${not empty requestScope.errorMessage}">
+				<div class="errors">
+					<c:forEach items="${requestScope.errorMessage}" var="error">
+						<c:if test="${error.contains('model')}">
+							<c:out value="${incorrectModel}" />
+						</c:if>
+
+						<c:if test="${error.contains('year')}">
+							<c:out value="${incorrectYear}" />
+						</c:if>
+
+						<c:if test="${error.contains('carcase')}">
+							<c:out value="${incorrectCarcase}" />
+						</c:if>
+
+						<c:if test="${error.contains('price')}">
+							<c:out value="${incorrectPrice}" />
+						</c:if>
+
+						<c:if test="${error.contains('transmission')}">
+							<c:out value="${incorrectTransmission}" />
+						</c:if>
+
+						<c:if test="${error.contains('typeFuel')}">
+							<c:out value="${incorrectTypeFuel}" />
+						</c:if>
+
+						<c:if test="${error.contains('engineCapacity')}">
+							<c:out value="${incorrectEngineCapacity}" />
+						</c:if>
+
+						<c:if test="${error.contains('driveUnit')}">
+							<c:out value="${incorrectDriveUnit}" />
+						</c:if>
+
+						<c:if test="${error.contains('mileage')}">
+							<c:out value="${incorrectMileage}" />
+						</c:if>
+					</c:forEach>
+				</div>
+			</c:if>
+		</i><br />
+	</form>
+
+
+
 
 	<div class="footer">
 		<jsp:include page="footer.jsp" />

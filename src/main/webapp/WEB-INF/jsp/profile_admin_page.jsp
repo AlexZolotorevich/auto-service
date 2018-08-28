@@ -16,8 +16,32 @@
 	var="refuse" />
 <fmt:message bundle="${loc}" key="common.profile.infoText.text"
 	var="infoText" />
-<fmt:message bundle="${loc}" key="common.profile.users.text"
-	var="users" />
+<fmt:message bundle="${loc}" key="common.profile.users.text" var="users" />
+<fmt:message bundle="${loc}" key="common.sales_page.detail.text"
+	var="detail" />
+	
+
+<fmt:message bundle="${loc}" key="common.salespage.model.text"
+	var="model" />
+<fmt:message bundle="${loc}" key="common.salespage.year.text" var="year" />
+<fmt:message bundle="${loc}" key="common.salespage.transmission.text"
+	var="transmission" />
+<fmt:message bundle="${loc}" key="common.salespage.engineCapacity.text"
+	var="engineCapacity" />
+<fmt:message bundle="${loc}" key="common.salespage.fuel.text" var="fuel" />
+<fmt:message bundle="${loc}" key="common.salespage.driveUnit.text"
+	var="driveUnit" />
+<fmt:message bundle="${loc}" key="common.salespage.mileage.text"
+	var="mileage" />
+<fmt:message bundle="${loc}" key="common.salespage.engineCapacity.text"
+	var="engineCapacity" />
+<fmt:message bundle="${loc}" key="common.salespage.price.text"
+	var="price" />
+<fmt:message bundle="${loc}" key="common.salespage.date.text" var="date" />
+<fmt:message bundle="${loc}" key="common.salespage.carcase.text"
+	var="carcase" />
+	
+	
 <html>
 
 
@@ -28,10 +52,40 @@
 </head>
 <body>
 
-	<style>
+<style>
+
+.content-cars {
+	background: 3px solid #e8e8e8;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+	padding: 5px;
+	margin-left: 200px;
+	width: 700px;
+}
 .yourVehicle {
 	background: 3px solid #e8e8e8;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+}
+
+.picture {
+	float: left;
+	width: 130px;
+	height: 130px;
+}
+
+.block {
+	background: #eee;
+	padding: 10px;
+	height: 130px;
+	float: left;
+	width: 25%;
+	margin-right: 2%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.block:last-child {
+	margin-right: 0;
 }
 </style>
 
@@ -50,27 +104,82 @@
 			<c:forEach items="${newCarsOfUsers}" var="car">
 
 				<div class="content-cars">
-					<p>${car}</p>
-					<form action="Controller" method="post">
-						<input type="hidden" name="command" value="accept_vehicle" /> 
-						<input type="hidden" name="vehicle_ID" value="${car.ID}">
-						<input class="btn btn-outline-secondary" type="submit" value="${accept}" />
-					</form>
+					<div class="short-info">
+						<div class="picture">
+							<img src="static/images/commercial.jpg" height="130" width="130"
+								border="0">
+						</div>
+						<div class="block">
+							<div class="car">
+								<h6>${model}:${car.model}</h6>
+							</div>
+							<div class="yearcar">
+								<h6>${year}:${car.year}</h6>
+							</div>
+							<div class="carcasecar">
+								<h6>${carcase}:${car.typeCarcase}</h6>
+							</div>
+							<div class="engineCapacity">
+								<h6>${engineCapacity}:${car.engineCapacity}</h6>
+							</div>
+						</div>
 
-					<form action="Controller" method="post">
-						<input type="hidden" name="command" value="delete_vehicle_admin" /> 
-						<input type="hidden" name="vehicle_ID" value="${car.ID}">
-						<input class="btn btn-outline-secondary" type="submit" value="${refuse}" />
-					</form>
 
+						<div class="block">
+							<div class="transmission">
+								<h6>${transmission}:${car.transmission}</h6>
+							</div>
+							<div class="typeFuel">
+								<h6>${fuel}:${car.typeFuel}</h6>
+							</div>
+							<div class="driveUnit">
+								<h6>${driveUnit}:${car.driveUnit}</h6>
+							</div>
+							<div class="mileage">
+								<h6>${mileage}:${car.mileage}</h6>
+							</div>
+						</div>
+
+
+						<div class="block">
+							<div class="price">
+								<h6>${price}:${car.price}</h6>
+							</div>
+							<div class="date">
+								<h6>${date}:${car.date}</h6>
+							</div>
+						</div>
+
+
+						<form action="Controller" method="post">
+							<input type="hidden" name="command" value="accept_vehicle" /> <input
+								type="hidden" name="vehicle_ID" value="${car.ID}"> <input
+								class="btn btn-outline-secondary" type="submit"
+								value="${accept}" />
+						</form>
+
+						<form action="Controller" method="post">
+							<input type="hidden" name="command" value="delete_vehicle_admin" />
+							<input type="hidden" name="vehicle_ID" value="${car.ID}">
+							<input class="btn btn-outline-secondary" type="submit"
+								value="${refuse}" />
+						</form>
+						<form action="Controller" method="get">
+								<input type="hidden" name="car" value="${car}"> <input
+									type="hidden" name="command" value="detail_vehicle" /> <input
+									type="hidden" name="vehicle_ID" value="${car.ID}"><input
+									class="btn btn-outline-secondary" type="submit"
+									value="${detail}" />
+							</form>
+					</div>
 				</div>
 			</c:forEach>
 		</c:if>
 	</div>
 
 	<form action="Controller" method="get">
-		<input type="hidden" name="command" value="get_all_users" /> 
-		<input class="btn btn-outline-secondary" type="submit" value="${users}" />
+		<input type="hidden" name="command" value="get_all_users" /> <input
+			class="btn btn-outline-secondary" type="submit" value="${users}" />
 	</form>
 
 	<div class="footer">

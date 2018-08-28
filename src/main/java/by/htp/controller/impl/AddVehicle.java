@@ -3,6 +3,7 @@ package by.htp.controller.impl;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,10 +38,18 @@ public class AddVehicle implements Command {
 			AppService appService = ServiceFactory.getInstance().getAppService();
 			
 			if(!appService.addVehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit, mileage, userID, description)){
+				
 				List<String> listErrors = appService.getListErrors();
 				request.setAttribute(ConstantParam.ERROR_MESSAGE, listErrors);
+				RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.ADD_VEHICLE);
+				dispatcher.forward(request, response);
+				
+			}else {
+				
+				response.sendRedirect(request.getRequestURL() + command);
+				
 			}
-			response.sendRedirect(request.getRequestURL() + command);
+			
 
 		} catch (ServiceException e) {
 			response.sendRedirect(PagePath.ERROR_PAGE);

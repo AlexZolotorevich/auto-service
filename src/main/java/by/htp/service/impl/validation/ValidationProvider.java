@@ -17,7 +17,7 @@ public class ValidationProvider {
 	
 	public static final String MODEL_ERROR = "model";
 	public static final String YEAR_ERROR = "year";
-	public static final String TYPE_CARCASE_ERROR = "year";
+	public static final String TYPE_CARCASE_ERROR = "carcase";
 	public static final String PRICE_ERROR = "price";
 	public static final String TRANSMISSION_ERROR = "transmission";
 	public static final String TYPE_FUEL_ERROR = "typeFuel";

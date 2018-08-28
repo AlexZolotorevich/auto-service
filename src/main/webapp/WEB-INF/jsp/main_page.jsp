@@ -120,6 +120,13 @@
 	</form>
 	</c:if>
 </div>
+<div class="news">
+	<c:if test="${not empty sessionScope.news}">
+		<c:forEach items="${news}" var="news">
+			<p>${news}</p>
+		</c:forEach>
+	</c:if>
+</div>
 
 <div>	
 	<jsp:include page="footer.jsp"/> 

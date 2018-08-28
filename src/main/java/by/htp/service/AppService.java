@@ -16,26 +16,30 @@ public interface AppService {
 	
 	List<Vehicle> getCarsByUser(Integer user_ID) throws ServiceException;
 	
-	Vehicle getCarByID(String vehicle_ID) throws ServiceException;
+	Vehicle getCarByID(String vehicleID) throws ServiceException;
 	
-	void deleteVehicleByID(String vehicle_ID) throws ServiceException;
+	void deleteVehicleByID(String vehicleID) throws ServiceException;
 	
 	boolean addVehicle(String model, String year, String typeCarcase, String price, String transmission, String typeFuel,
-			String engineCapacity, String driveUnit, String mileage, String user_ID, String description) throws ServiceException;
+			String engineCapacity, String driveUnit, String mileage, String userID, String description) throws ServiceException;
 	
 	boolean addNews(String title, String text, long Id) throws ServiceException;
 	
-	News getAllNews() throws ServiceException;
+	List<News> getAllNews() throws ServiceException;
 	
 	List<Vehicle>getNewCarsOfUsers() throws ServiceException;
 	
-	void acceptVehicle(Integer vehicle_ID) throws ServiceException;
+	void acceptVehicle(Integer vehicleID) throws ServiceException;
 	
-	void deleteVehicleByAdmin(Integer vehicle_ID) throws ServiceException;
+	void deleteVehicleByAdmin(Integer vehicleID) throws ServiceException;
 	
 	List<User> getAllUsers() throws ServiceException; 
 	
 	void toBanUser(String userID) throws ServiceException;
 	
 	public List<String> getListErrors();
+	
+	List<Vehicle> filtrateVehicle() throws ServiceException;
+	
+	
 }

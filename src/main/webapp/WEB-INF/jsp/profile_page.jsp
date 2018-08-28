@@ -55,14 +55,7 @@
 				class="btn btn-outline-secondary" type="submit" value="${accept}">
 		</form>
 
-		<i> <c:if test="${not empty requestScope.errorMessage}">
-				<div class="text-color">
-					<c:forEach items="${requestScope.errorMessage}" var="map">
-						<c:out value="${map.value}" />
-						<br>
-					</c:forEach>
-			</c:if>
-		</i><br />
+		
 	</div>
 
 	<div class="text">

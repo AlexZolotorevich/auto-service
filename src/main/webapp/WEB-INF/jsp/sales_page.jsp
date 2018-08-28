@@ -23,8 +23,7 @@
 	var="transmission" />
 <fmt:message bundle="${loc}" key="common.salespage.engineCapacity.text"
 	var="engineCapacity" />
-<fmt:message bundle="${loc}" key="common.salespage.fuel.text"
-	var="fuel" />	
+<fmt:message bundle="${loc}" key="common.salespage.fuel.text" var="fuel" />
 <fmt:message bundle="${loc}" key="common.salespage.driveUnit.text"
 	var="driveUnit" />
 <fmt:message bundle="${loc}" key="common.salespage.mileage.text"
@@ -33,12 +32,11 @@
 	var="engineCapacity" />
 <fmt:message bundle="${loc}" key="common.salespage.price.text"
 	var="price" />
-<fmt:message bundle="${loc}" key="common.salespage.date.text"
-	var="date" />
+<fmt:message bundle="${loc}" key="common.salespage.date.text" var="date" />
 <fmt:message bundle="${loc}" key="common.salespage.carcase.text"
-	var="carcase" />		
-	
-		
+	var="carcase" />
+
+
 <head>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -55,8 +53,8 @@
 	width: 350px;
 	float: left;
 	border-radius: 5px;
-	border: 3px solid #343a40;
-	padding: 15px;
+	
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
 }
 
 .content {
@@ -98,8 +96,8 @@
 
 .year {
 	padding: 5px;
-	width: 40%;
-	clear: left;
+	width: 30%;
+	float: left;
 }
 
 .footer {
@@ -110,7 +108,6 @@
 	float: left;
 	width: 130px;
 	height: 130px;
-	
 }
 
 .block {
@@ -135,100 +132,101 @@
 
 	<div class="common">
 		<div class="sidebar">
-			<div class="model">
-				<legend>Choose model</legend>
-				<div class="left-check">
-
-					<div>
-						<input type="checkbox" id="aklasse" name="model" value="a" />
-						<label for="aklasse">A-Klasse</label>
-					</div>
-					<div>
-						<input type="checkbox" id="bklasse" name="model" value="b" />
-						<label for="bklasse">B-Klasse</label>
-					</div>
-					<div>
-						<input type="checkbox" id="cklasse" name="model" value="c" />
-						<label for="cklasse">C-Klasse</label>
-					</div>
-					<div>
-						<input type="checkbox" id="eklasse" name="model" value="e" />
-						<label for="eklasse">E-Klasse</label>
-					</div>
-				</div>
-
-				<div class="right-check">
-					<div>
-						<input type="checkbox" id="gklasse" name="model" value="g" />
-						<label for="gklasse">G-Klasse</label>
-					</div>
-					<div>
-						<input type="checkbox" id="glklasse" name="model" value="gl" />
-						<label for="glklasse">GL-Klasse</label>
-					</div>
-					<div>
-						<input type="checkbox" id="sklasse" name="model" value="s" />
-						<label for="sklasse">S-Klasse</label>
-					</div>
-					<div>
-						<input type="checkbox" id="amg" name="model" value="amg" /> <label
-							for="amg">AMG</label>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="carcase">
-				<legend>Choose carcase</legend>
-				<div>
-					<input type="checkbox" id="sedan" name="carcase" value="sedan" />
-					<label for="sedan">sedan</label>
-				</div>
-				<div>
-					<input type="checkbox" id="coupe" name="carcase" value="coupe" />
-					<label for="coupe">coupe</label>
-				</div>
-				<div>
-					<input type="checkbox" id="wagon" name="carcase" value="wagon" />
-					<label for="wagon">wagon</label>
-				</div>
-			</div>
-
-			<div class="year">
-				<legend>Year of issue</legend>
-				<select id="year" name="year">
-					<option value="">choose a year</option>
-					<option value="2018">2018</option>
-					<option value="2017">2017</option>
-					<option value="2016">2016</option>
-					<option value="2015">2015</option>
-					<option value="2014">2014</option>
-					<option value="2013">2013</option>
-					<option value="2012">2012</option>
-					<option value="2011">2011</option>
-					<option value="2010">2010</option>
-					<option value="2009">2009</option>
-					<option value="2008">2008</option>
-					<option value="2007">2007</option>
-				</select>
-			</div>
-
-			<div class="fuel">
-				<legend>Type of fuel</legend>
-				<div>
-					<input type="checkbox" id="fuel" name="fuel" value="diesel" /> <label
-						for="diesel">diesel</label>
-				</div>
-				<div>
-					<input type="checkbox" id="fuel" name="fuel" value="petrol" /> <label
-						for="petrol">petrol</label>
-				</div>
-				<div>
-					<input type="checkbox" id="fuel" name="fuel" value="electric" /> <label
-						for="electric">electric</label>
-				</div>
-			</div>
 			<form action="Controller" method="post">
+				<div class="model">
+					<legend>Choose model</legend>
+					<div class="left-check">
+
+						<div>
+							<input type="checkbox" name="model" value="a" /> <label
+								for="aklasse">A-Klasse</label>
+						</div>
+						<div>
+							<input type="checkbox" name="model" value="b" /> <label
+								for="bklasse">B-Klasse</label>
+						</div>
+						<div>
+							<input type="checkbox" name="model" value="c" /> <label
+								for="cklasse">C-Klasse</label>
+						</div>
+						<div>
+							<input type="checkbox" name="model" value="e" /> <label
+								for="eklasse">E-Klasse</label>
+						</div>
+					</div>
+
+					<div class="right-check">
+						<div>
+							<input type="checkbox" name="model" value="g" /> <label
+								for="gklasse">G-Klasse</label>
+						</div>
+						<div>
+							<input type="checkbox" name="model" value="gl" /> <label
+								for="glklasse">GL-Klasse</label>
+						</div>
+						<div>
+							<input type="checkbox" name="model" value="s" /> <label
+								for="sklasse">S-Klasse</label>
+						</div>
+						<div>
+							<input type="checkbox" name="model" value="amg" /> <label
+								for="amg">AMG</label>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="carcase">
+					<legend>Choose carcase</legend>
+					<div>
+						<input type="checkbox" id="sedan" name="carcase" value="sedan" />
+						<label for="sedan">sedan</label>
+					</div>
+					<div>
+						<input type="checkbox" id="coupe" name="carcase" value="coupe" />
+						<label for="coupe">coupe</label>
+					</div>
+					<div>
+						<input type="checkbox" id="wagon" name="carcase" value="wagon" />
+						<label for="wagon">wagon</label>
+					</div>
+				</div>
+
+				<div class="year">
+					<legend>Year of issue</legend>
+					<select id="year" name="year">
+						<option value="">choose a year</option>
+						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
+						<option value="2013">2013</option>
+						<option value="2012">2012</option>
+						<option value="2011">2011</option>
+						<option value="2010">2010</option>
+						<option value="2009">2009</option>
+						<option value="2008">2008</option>
+						<option value="2007">2007</option>
+					</select>
+				</div>
+
+				<div class="fuel">
+					<legend>Type of fuel</legend>
+					<div>
+						<input type="checkbox" id="fuel" name="fuel" value="diesel" /> <label
+							for="diesel">diesel</label>
+					</div>
+					<div>
+						<input type="checkbox" id="fuel" name="fuel" value="petrol" /> <label
+							for="petrol">petrol</label>
+					</div>
+					<div>
+						<input type="checkbox" id="fuel" name="fuel" value="electric" />
+						<label for="electric">electric</label>
+					</div>
+				</div>
+
 				<input type="hidden" name="command" value="filtrate" /> <input
 					class="btn btn-outline-secondary" type="submit" value="${accept}" />
 			</form>
@@ -238,7 +236,7 @@
 				<c:if test="${not empty sessionScope.cars}">
 					<c:forEach items="${cars}" var="car">
 						<div class="content-cars">
-							<p>
+
 							<div class="short-info">
 								<div class="picture">
 									<img src="static/images/commercial.jpg" height="130"
@@ -246,42 +244,42 @@
 								</div>
 								<div class="block">
 									<div class="car">
-										<h6>${model}: ${car.model}</h6>
+										<h6>${model}:${car.model}</h6>
 									</div>
 									<div class="yearcar">
-										<h6>${year}: ${car.year}</h6>
+										<h6>${year}:${car.year}</h6>
 									</div>
 									<div class="carcasecar">
-										<h6>${carcase}: ${car.typeCarcase}</h6>
+										<h6>${carcase}:${car.typeCarcase}</h6>
 									</div>
 									<div class="engineCapacity">
-										<h6>${engineCapacity}: ${car.engineCapacity}</h6>
+										<h6>${engineCapacity}:${car.engineCapacity}</h6>
 									</div>
 								</div>
 
 
 								<div class="block">
 									<div class="transmission">
-										<h6>${transmission}: ${car.transmission}</h6>
+										<h6>${transmission}:${car.transmission}</h6>
 									</div>
 									<div class="typeFuel">
-										<h6>${fuel}: ${car.typeFuel}</h6>
+										<h6>${fuel}:${car.typeFuel}</h6>
 									</div>
 									<div class="driveUnit">
-										<h6>${driveUnit}: ${car.driveUnit}</h6>
+										<h6>${driveUnit}:${car.driveUnit}</h6>
 									</div>
 									<div class="mileage">
-										<h6>${mileage}: ${car.mileage}</h6>
+										<h6>${mileage}:${car.mileage}</h6>
 									</div>
 								</div>
 
 
 								<div class="block">
 									<div class="price">
-										<h6>${price}: ${car.price}</h6>
+										<h6>${price}:${car.price}</h6>
 									</div>
 									<div class="date">
-										<h6>${date}: ${car.date}</h6>
+										<h6>${date}:${car.date}</h6>
 									</div>
 								</div>
 
@@ -295,7 +293,7 @@
 									class="btn btn-outline-secondary" type="submit"
 									value="${detail}" />
 							</form>
-							</p>
+
 						</div>
 					</c:forEach>
 				</c:if>

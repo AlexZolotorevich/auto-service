@@ -3,10 +3,11 @@ package by.htp.entity;
 
 public class News {
 	
-	private String ID;
+	private long ID;
 	private String title;
 	private String text;
 	private String date;
+	private int userID;
 	
 	
 	public News(String title, String text, String date) {
@@ -15,13 +16,27 @@ public class News {
 		this.date = date;
 	}
 	
+	/** create in DAO*/
+	public News(long ID, String title, String text, String date, int userID) {
+		this.ID = ID;
+		this.title = title;
+		this.text = text;
+		this.date = date;
+		this.userID = userID;
+	}
 	
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 	
-	public String getID() {
+	public long getID() {
 		return ID;
 	}
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(long ID) {
+		this.ID = ID;
 	}
 	public String getTitle() {
 		return title;
@@ -42,20 +57,17 @@ public class News {
 		this.date = date;
 	}
 
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
+		result = prime * result + (int) (ID ^ (ID >>> 32));
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + userID;
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -66,10 +78,7 @@ public class News {
 		if (getClass() != obj.getClass())
 			return false;
 		News other = (News) obj;
-		if (ID == null) {
-			if (other.ID != null)
-				return false;
-		} else if (!ID.equals(other.ID))
+		if (ID != other.ID)
 			return false;
 		if (date == null) {
 			if (other.date != null)
@@ -86,6 +95,14 @@ public class News {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
+		if (userID != other.userID)
+			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "News [ID=" + ID + ", title=" + title + ", text=" + text + ", date=" + date + ", userID=" + userID + "]";
+	}
+
 }

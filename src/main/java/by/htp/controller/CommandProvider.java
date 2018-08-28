@@ -14,6 +14,7 @@ import by.htp.controller.impl.DeleteVehicle;
 import by.htp.controller.impl.DeleteVehicleAdmin;
 import by.htp.controller.impl.DetailVehicle;
 import by.htp.controller.impl.EditUser;
+import by.htp.controller.impl.Filtrate;
 import by.htp.controller.impl.GetAllUsers;
 import by.htp.controller.impl.Localization;
 import by.htp.controller.impl.MainPage;
@@ -58,6 +59,7 @@ public class CommandProvider {
 		commands.put(CommandName.DELETE_VEHICLE_ADMIN, new DeleteVehicleAdmin());
 		commands.put(CommandName.GET_ALL_USERS, new GetAllUsers());
 		commands.put(CommandName.BAN_USER, new BanUser());
+		commands.put(CommandName.FILTRATE, new Filtrate());
 		
 	}
 	

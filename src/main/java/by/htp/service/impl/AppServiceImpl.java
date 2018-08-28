@@ -46,7 +46,7 @@ public class AppServiceImpl implements AppService {
 			cars = appDAO.getAllCars(pageInfo.getCOUNT_ITEMS_PER_PAGE(), pageInfo.getStart());
 			
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method getPortionCars", e);
 			throw new ServiceException("ServiceException", e);
 		}
 		return cars;
@@ -68,7 +68,7 @@ public class AppServiceImpl implements AppService {
 		try {
 			numberOfRows = appDAO.getNumberOfRows();
 		} catch (DAOException e) {
-			logger.warn("Impossible to get number of rows", e);
+			logger.warn("Impossible to get number of rows in the method getNumberOfRows", e);
 			throw new ServiceException("ServiceException", e);
 		}
 
@@ -94,12 +94,13 @@ public class AppServiceImpl implements AppService {
 		try {
 			if(listErrors.isEmpty()) {
 				appDAO.addVehicle(vehicle, Integer.parseInt(userID), date);
+				return true;
 			}
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method addVehicle", e);
 			throw new ServiceException("ServiceException", e);
 		}
-		return true;
+		return false;
 	}
 	
 	
@@ -116,7 +117,7 @@ public class AppServiceImpl implements AppService {
 				appDAO.addNews(title, text, (int) Id, date);
 
 			} catch (DAOException e) {
-				logger.warn("ServletException in AppService", e);
+				logger.warn("ServletException in AppService in the method addNews", e);
 				throw new ServiceException("ServiceException", e);
 			}
 		
@@ -133,7 +134,7 @@ public class AppServiceImpl implements AppService {
 
 			cars = appDAO.getCarsByUser(userID);
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method getCarsByUser", e);
 			throw new ServiceException("ServiceException", e);
 		}
 		return cars;
@@ -165,7 +166,7 @@ public class AppServiceImpl implements AppService {
 			appDAO.deleteVehicleByID(ID);
 
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method deleteVehicleByID", e);
 			throw new ServiceException("ServiceException", e);
 		}
 
@@ -181,7 +182,7 @@ public class AppServiceImpl implements AppService {
 			cars = appDAO.getNewCarsOfUsers();
 
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method getNewCarsOfUsers", e);
 			throw new ServiceException("ServiceException", e);
 		}
 		return cars;
@@ -195,7 +196,7 @@ public class AppServiceImpl implements AppService {
 			appDAO.acceptVehicle(vehicleID);
 
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method acceptVehicle", e);
 			throw new ServiceException("ServiceException", e);
 		}
 
@@ -209,7 +210,7 @@ public class AppServiceImpl implements AppService {
 			appDAO.deleteVehicleByAdmin(vehicle_ID);
 
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method deleteVehicleByAdmin", e);
 			throw new ServiceException("ServiceException", e);
 		}
 
@@ -231,7 +232,7 @@ public class AppServiceImpl implements AppService {
 		try {
 			users = appDAO.getAllUsers();
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method getAllUsers", e);
 			throw new ServiceException("ServiceException", e);
 		}
 		return users;
@@ -246,7 +247,7 @@ public class AppServiceImpl implements AppService {
 			appDAO.toBanUser(userID);
 			
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method toBanUser", e);
 			throw new ServiceException("ServiceException", e);
 		}
 
@@ -258,15 +259,15 @@ public class AppServiceImpl implements AppService {
 	}
 
 	@Override
-	public News getAllNews() throws ServiceException {
+	public List<News> getAllNews() throws ServiceException {
 		
-		News news;
+		List<News> news = null;
 		
 		try {
 			news = appDAO.getAllNews();
 			
 		} catch (DAOException e) {
-			logger.warn("ServletException in AppService", e);
+			logger.warn("ServletException in AppService in the method getAllNews", e);
 			throw new ServiceException("ServiceException", e);
 		}
 		
@@ -275,5 +276,20 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public List<String> getListErrors() {
 		return listErrors;
+	}
+
+	@Override
+	public List<Vehicle> filtrateVehicle() throws ServiceException {
+		
+		List<Vehicle> list = null;
+		
+		try {
+			list = appDAO.filtrateVehicle();
+			
+		} catch (DAOException e) {
+			logger.warn("ServletException in AppService in the method filtrateVehicle", e);
+			throw new ServiceException("ServiceException", e);
+		}
+		return list;
 	}
 }

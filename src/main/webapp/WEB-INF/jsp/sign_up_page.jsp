@@ -44,7 +44,6 @@
 <title>sign up page</title>
 </head>
 <body>
-
 	<style>
 .body {
 	background-color: #393939;
@@ -65,7 +64,8 @@
 	color: #cccfd1;
 	padding-top: 8px;
 }
-.text-inner{
+
+.text-inner {
 	height: 35px;
 	text-align: left;
 }
@@ -136,7 +136,7 @@
 					</c:forEach>
 				</div>
 			</c:if>
-		</i><br />
+		</i><br /> 
 
 
 	</div>
