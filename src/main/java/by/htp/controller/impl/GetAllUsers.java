@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import by.htp.controller.command.Command;
 import by.htp.controller.page_path.PagePath;
 import by.htp.entity.User;
-import by.htp.service.AppService;
+import by.htp.service.AdminActionService;
 import by.htp.service.ServiceFactory;
 import by.htp.service.exception.ServiceException;
 
@@ -21,10 +21,10 @@ public class GetAllUsers implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		AppService appService = ServiceFactory.getInstance().getAppService();
+		AdminActionService adminActionService = ServiceFactory.getInstance().getAdminActionService();
 		
 		try {
-			List<User> allUsers = appService.getAllUsers();
+			List<User> allUsers = adminActionService.getAllUsers();
 			request.getSession().setAttribute(ConstantParam.ALL_USERS, allUsers);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.GET_ALL_USERS);

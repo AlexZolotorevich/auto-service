@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.controller.command.Command;
-import by.htp.service.AppService;
+import by.htp.service.AdminActionService;
 import by.htp.service.ServiceFactory;
 import by.htp.service.exception.ServiceException;
 
@@ -20,10 +20,10 @@ public class DeleteVehicleAdmin implements Command{
 		
 		Integer vehicleID = Integer.parseInt(request.getParameter(ConstantParam.VEHICLE_ID));
 		
-		AppService appService = ServiceFactory.getInstance().getAppService();
+		AdminActionService adminActionService = ServiceFactory.getInstance().getAdminActionService();
 		
 		try {
-			appService.deleteVehicleByAdmin(vehicleID);
+			adminActionService.deleteVehicleByAdmin(vehicleID);
 			response.sendRedirect(request.getRequestURL() + command);
 		} catch (ServiceException e) {
 			response.sendRedirect(ConstantParam.ERROR_MESSAGE);

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.controller.command.Command;
 import by.htp.controller.page_path.PagePath;
-import by.htp.service.AppService;
+import by.htp.service.AdminActionService;
 import by.htp.service.ServiceFactory;
 import by.htp.service.exception.ServiceException;
 
@@ -19,11 +19,11 @@ public class AcceptVehicle implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		AppService appService = ServiceFactory.getInstance().getAppService();
+		AdminActionService adminActionService = ServiceFactory.getInstance().getAdminActionService();
 		Integer vehicle_ID = Integer.parseInt(request.getParameter(ConstantParam.VEHICLE_ID));
 		
 		try {
-			appService.acceptVehicle(vehicle_ID);
+			adminActionService.acceptVehicle(vehicle_ID);
 			response.sendRedirect(request.getRequestURL() + command);
 			
 		} catch (ServiceException e) {

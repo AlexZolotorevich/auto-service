@@ -28,6 +28,7 @@ import by.htp.controller.impl.ToProfilePage;
 import by.htp.controller.impl.ToProfilePageAdmin;
 import by.htp.controller.impl.ToSignPage;
 import by.htp.controller.impl.ToSignUpPage;
+import by.htp.controller.impl.UnbanUser;
 
 public class CommandProvider {
 	
@@ -59,6 +60,7 @@ public class CommandProvider {
 		commands.put(CommandName.DELETE_VEHICLE_ADMIN, new DeleteVehicleAdmin());
 		commands.put(CommandName.GET_ALL_USERS, new GetAllUsers());
 		commands.put(CommandName.BAN_USER, new BanUser());
+		commands.put(CommandName.UNBAN_USER, new UnbanUser());
 		commands.put(CommandName.FILTRATE, new Filtrate());
 		
 	}

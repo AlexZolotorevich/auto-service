@@ -1,8 +1,6 @@
 package by.htp.service.impl;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,7 +10,6 @@ import by.htp.dao.DAOFactory;
 import by.htp.dao.exception.DAOException;
 import by.htp.entity.News;
 import by.htp.entity.PageInformation;
-import by.htp.entity.User;
 import by.htp.entity.Vehicle;
 import by.htp.service.AppService;
 import by.htp.service.exception.ServiceException;
@@ -89,7 +86,7 @@ public class AppServiceImpl implements AppService {
 		
 		Vehicle vehicle = new Vehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit, mileage, description);
 		listErrors = ValidationProvider.checkVehicle(vehicle);
-		String date = takeDate();
+		String date = Util.takeDate();
 		
 		try {
 			if(listErrors.isEmpty()) {
@@ -107,22 +104,7 @@ public class AppServiceImpl implements AppService {
 	
 	
 
-	/** add news admin */
-	@Override
-	public boolean addNews(String title, String text, long Id) throws ServiceException {
-
-		String date = takeDate();
-
-			try {
-				appDAO.addNews(title, text, (int) Id, date);
-
-			} catch (DAOException e) {
-				logger.warn("ServletException in AppService in the method addNews", e);
-				throw new ServiceException("ServiceException", e);
-			}
-		
-		return true;
-	}
+	
 
 	/** get cars of user (admit userID) */
 	@Override
@@ -172,86 +154,8 @@ public class AppServiceImpl implements AppService {
 
 	}
 
-	/** admin get new cars to active them */
-	@Override
-	public List<Vehicle> getNewCarsOfUsers() throws ServiceException {
 
-		List<Vehicle> cars = null;
 
-		try {
-			cars = appDAO.getNewCarsOfUsers();
-
-		} catch (DAOException e) {
-			logger.warn("ServletException in AppService in the method getNewCarsOfUsers", e);
-			throw new ServiceException("ServiceException", e);
-		}
-		return cars;
-	}
-
-	/** active car by Admin */
-	@Override
-	public void acceptVehicle(Integer vehicleID) throws ServiceException {
-
-		try {
-			appDAO.acceptVehicle(vehicleID);
-
-		} catch (DAOException e) {
-			logger.warn("ServletException in AppService in the method acceptVehicle", e);
-			throw new ServiceException("ServiceException", e);
-		}
-
-	}
-
-	/** delete new car */
-	@Override
-	public void deleteVehicleByAdmin(Integer vehicle_ID) throws ServiceException {
-
-		try {
-			appDAO.deleteVehicleByAdmin(vehicle_ID);
-
-		} catch (DAOException e) {
-			logger.warn("ServletException in AppService in the method deleteVehicleByAdmin", e);
-			throw new ServiceException("ServiceException", e);
-		}
-
-	}
-
-	/** create DATE */
-	private String takeDate() {
-		Date date = new Date();
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy.MM.dd");
-		String nowDate = simple.format(date).replace(".", "-");
-		return nowDate;
-	}
-
-	/** get all users */
-	@Override
-	public List<User> getAllUsers() throws ServiceException {
-
-		List<User> users;
-		try {
-			users = appDAO.getAllUsers();
-		} catch (DAOException e) {
-			logger.warn("ServletException in AppService in the method getAllUsers", e);
-			throw new ServiceException("ServiceException", e);
-		}
-		return users;
-	}
-
-	/** ban user ha-ha */
-	@Override
-	public void toBanUser(String userId) throws ServiceException {
-		Integer userID = Integer.parseInt(userId);
-		
-		try {
-			appDAO.toBanUser(userID);
-			
-		} catch (DAOException e) {
-			logger.warn("ServletException in AppService in the method toBanUser", e);
-			throw new ServiceException("ServiceException", e);
-		}
-
-	}
 	
 	@Override
 	public PageInformation getPageInfo() {
@@ -279,7 +183,7 @@ public class AppServiceImpl implements AppService {
 	}
 
 	@Override
-	public List<Vehicle> filtrateVehicle() throws ServiceException {
+	public List<Vehicle> filtrateVehicle(String[] model, String[] carcase, String year, String[] fuel) throws ServiceException {
 		
 		List<Vehicle> list = null;
 		

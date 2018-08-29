@@ -27,6 +27,7 @@ public enum CommandName {
 	DELETE_VEHICLE_ADMIN,
 	GET_ALL_USERS,
 	BAN_USER,
+	UNBAN_USER,
 	FILTRATE,
 	
 	

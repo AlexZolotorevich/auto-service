@@ -322,7 +322,7 @@
 						</c:choose>
 					</c:forEach>
 
-					<c:if test="${currentPage != countPages}">
+					<c:if test="${currentPage < countPages}">
 						<li class="page-item"><a class="page-link"
 							href="Controller?command=sales_page&currentPage=${currentPage+1}">Next</a>
 						</li>

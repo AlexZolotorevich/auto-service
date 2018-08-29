@@ -26,7 +26,7 @@ public class Filtrate implements Command {
 		AppService appService = ServiceFactory.getInstance().getAppService();
 		
 		try {
-			List<Vehicle> listVehicle = appService.filtrateVehicle();
+			List<Vehicle> listVehicle = appService.filtrateVehicle(model, carcase, year, fuel);
 			
 		} catch (ServiceException e) {
 			

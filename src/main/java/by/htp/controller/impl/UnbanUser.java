@@ -12,9 +12,10 @@ import by.htp.service.AdminActionService;
 import by.htp.service.ServiceFactory;
 import by.htp.service.exception.ServiceException;
 
-public class BanUser implements Command{
-
+public class UnbanUser implements Command{
+	
 	private final static String command = "?command=get_all_users";
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -22,13 +23,12 @@ public class BanUser implements Command{
 		AdminActionService adminActionService = ServiceFactory.getInstance().getAdminActionService();
 		
 		try {
-			adminActionService.toBanUser(userID);
+			adminActionService.toUnBanUser(userID);
 			response.sendRedirect(request.getRequestURL() + command);
 			
 		} catch (ServiceException e) {
 			response.sendRedirect(PagePath.ERROR_PAGE);
 		}
-		
 	}
 
 }

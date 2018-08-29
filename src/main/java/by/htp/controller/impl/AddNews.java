@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import by.htp.controller.command.Command;
 import by.htp.controller.page_path.PagePath;
 import by.htp.entity.AdminUser;
-import by.htp.service.AppService;
+import by.htp.service.AdminActionService;
 import by.htp.service.ServiceFactory;
 import by.htp.service.exception.ServiceException;
 
@@ -26,8 +26,8 @@ public class AddNews implements Command {
 
 		try {
 			if (admin != null) {
-				AppService appService = ServiceFactory.getInstance().getAppService();
-				appService.addNews(title, text, admin.getId());
+				AdminActionService adminActionService = ServiceFactory.getInstance().getAdminActionService();
+				adminActionService.addNews(title, text, admin.getId());
 				
 			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.MAIN_PAGE);

@@ -44,6 +44,7 @@ public class SQLquery {
 	public static final String ACCEPT_VEHICLE = "UPDATE `service-mercedes`.vehicle SET status='1' WHERE ID= ?";
 	public static final String GET_ALL_USERS = "SELECT * FROM `service-mercedes`.user WHERE role='user'";
 	public static final String BAN_USER = "UPDATE `service-mercedes`.user SET status='0' WHERE ID= ?";
+	public static final String UNBAN_USER = "UPDATE `service-mercedes`.user SET status='1' WHERE ID= ?";
 	
 	
 	/** helpers*/

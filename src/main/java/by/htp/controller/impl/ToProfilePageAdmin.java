@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import by.htp.controller.command.Command;
 import by.htp.controller.page_path.PagePath;
 import by.htp.entity.Vehicle;
-import by.htp.service.AppService;
+import by.htp.service.AdminActionService;
 import by.htp.service.ServiceFactory;
 import by.htp.service.exception.ServiceException;
 
@@ -28,8 +28,8 @@ public class ToProfilePageAdmin implements Command{
 		request.getSession().setAttribute(ConstantParam.PREVIOUS_QUERY, next);
 		
 		try {
-			AppService appService = ServiceFactory.getInstance().getAppService();
-			List<Vehicle> newCarsOfUsers = appService.getNewCarsOfUsers();
+			AdminActionService adminActionService = ServiceFactory.getInstance().getAdminActionService();
+			List<Vehicle> newCarsOfUsers = adminActionService.getNewCarsOfUsers();
 			request.getSession().setAttribute(ConstantParam.NEW_CARS_OF_USERS, newCarsOfUsers);
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.PROFILE_ADMIN);
 			dispatcher.forward(request, response);
