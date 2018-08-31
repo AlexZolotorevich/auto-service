@@ -108,7 +108,7 @@
 				href="Controller?command=main_page" class="nav-link">${home}</a></li>
 			<li class="nav-item"><a href="Controller?command=sales_page"
 				class="nav-link">${sales}</a></li>
-			<li class="nav-item"><a href="#" class="nav-link">${service}</a></li>
+			<li class="nav-item"><a href="Controller?command=service_page" class="nav-link">${service}</a></li>
 			<li class="nav-item"><a href="Controller?command=about_us" class="nav-link">${about}</a></li>
 		</ul>
 		

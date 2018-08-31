@@ -1,4 +1,4 @@
-package by.htp.controller.filter.csrf;
+package by.htp.filter.csrf;
 
 import java.io.IOException;
 

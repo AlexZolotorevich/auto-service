@@ -14,6 +14,7 @@ public class PagePath {
 	public static final String PROFILE_ADMIN = "/WEB-INF/jsp/profile_admin_page.jsp";
 	public static final String VEHICLE_DETAIL_PAGE = "/WEB-INF/jsp/vehicle_detail_page.jsp";
 	public static final String GET_ALL_USERS = "/WEB-INF/jsp/get_all_users_page.jsp";
+	public static final String SERVICE_PAGE = "/WEB-INF/jsp/service_page.jsp";
 	
 	
 	public static final String ERROR_PAGE = "/WEB-INF/jsp/error_page.jsp";

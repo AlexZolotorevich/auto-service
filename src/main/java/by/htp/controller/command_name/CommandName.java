@@ -29,6 +29,6 @@ public enum CommandName {
 	BAN_USER,
 	UNBAN_USER,
 	FILTRATE,
-	
+	SERVICE_PAGE,
 
 }

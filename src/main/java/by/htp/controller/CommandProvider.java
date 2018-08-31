@@ -19,6 +19,7 @@ import by.htp.controller.impl.GetAllUsers;
 import by.htp.controller.impl.Localization;
 import by.htp.controller.impl.MainPage;
 import by.htp.controller.impl.SalesPage;
+import by.htp.controller.impl.ServiceAction;
 import by.htp.controller.impl.SignIn;
 import by.htp.controller.impl.SignOut;
 import by.htp.controller.impl.SignUp;
@@ -62,7 +63,7 @@ public class CommandProvider {
 		commands.put(CommandName.BAN_USER, new BanUser());
 		commands.put(CommandName.UNBAN_USER, new UnbanUser());
 		commands.put(CommandName.FILTRATE, new Filtrate());
-		
+		commands.put(CommandName.SERVICE_PAGE, new ServiceAction());
 		
 	}
 	

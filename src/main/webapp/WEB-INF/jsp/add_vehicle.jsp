@@ -166,7 +166,7 @@ margin-top: 30px;
 
 			<div class="choosing">
 
-				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="model">
 					<option value="">choose a model</option>
 					<option value="a">A</option>
 					<option value="b">B</option>
@@ -190,16 +190,18 @@ margin-top: 30px;
 				</div>
 
 
-				<select class="custom-select " id="inlineFormCustomSelect">
+				<select class="custom-select " id="inlineFormCustomSelect" name="carcase">
 					<option value="">choose a body</option>
 					<option value="sedan">sedan</option>
 					<option value="coupe">coupe</option>
 					<option value="vagon">vagon</option>
-				</select> <select class="custom-select " id="inlineFormCustomSelect">
+				</select> 
+				<select class="custom-select " id="inlineFormCustomSelect" name="transmission">
 					<option value="">choose a transmission</option>
 					<option value="automatic">Automatic</option>
 					<option value="manual">Manual</option>
-				</select> <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+				</select> 
+				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="fuel">
 					<option value="">choose a fuel</option>
 					<option value="petrol">petrol</option>
 					<option value="diesel">diesel</option>
@@ -212,7 +214,7 @@ margin-top: 30px;
 				</div>
 
 
-				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+				<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="driveUnit">
 					<option value="">choose a drive unit</option>
 					<option value="4WD">4WD</option>
 					<option value="fwd">front-wheel drive</option>
