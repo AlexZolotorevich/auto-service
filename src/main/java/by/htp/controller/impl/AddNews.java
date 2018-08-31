@@ -2,7 +2,6 @@ package by.htp.controller.impl;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +14,8 @@ import by.htp.service.ServiceFactory;
 import by.htp.service.exception.ServiceException;
 
 public class AddNews implements Command {
+	
+	private final static String command = "?command=main_page";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,8 +31,7 @@ public class AddNews implements Command {
 				adminActionService.addNews(title, text, admin.getId());
 				
 			}
-			RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.MAIN_PAGE);
-			dispatcher.forward(request, response);
+			response.sendRedirect(request.getRequestURL() + command);
 
 		} catch (ServiceException e) {
 			response.sendRedirect(PagePath.ERROR_PAGE);

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.controller.command.Command;
+import by.htp.controller.page_path.PagePath;
 import by.htp.entity.Vehicle;
 import by.htp.service.AppService;
 import by.htp.service.ServiceFactory;
@@ -26,10 +27,12 @@ public class Filtrate implements Command {
 		AppService appService = ServiceFactory.getInstance().getAppService();
 		
 		try {
+			
 			List<Vehicle> listVehicle = appService.filtrateVehicle(model, carcase, year, fuel);
+			request.setAttribute(ConstantParam.LIST_VEHICLE, listVehicle);
 			
 		} catch (ServiceException e) {
-			
+			response.sendRedirect(PagePath.ERROR_PAGE);
 		}
 		
 

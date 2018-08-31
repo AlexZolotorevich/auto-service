@@ -65,6 +65,11 @@
     float: left; /* Обтекание по правому краю */
 }
 
+.profile{
+	padding: 5px; /* Поля вокруг текста */
+	text-align: right;
+}
+
 .signing{
 	padding: 5px; /* Поля вокруг текста */
     text-align: right;
@@ -130,8 +135,7 @@
 			<c:if test="${not empty sessionScope.user}">
 			<form action="Controller" method="get">
 				<input type="hidden" name="command" value="to_profile_page" /> <input
-					class="btn btn-outline-secondary" type="submit" name="to_profile_page"
-					value="${toProfile}" />
+					class="btn btn-outline-secondary" type="submit" value="${toProfile}" />
 					</form>
 			</c:if>
 		</div>
@@ -206,14 +210,6 @@
 		
 	</div>
 	</nav>
-
-	<form action="Controller" method="get">
-		<input type="hidden" name="command" value="sales_page" />
-	</form>
-
-
-
-
 
 
 	<!-- Optional JavaScript -->

@@ -188,6 +188,7 @@ public class AppServiceImpl implements AppService {
 		List<Vehicle> list = null;
 		
 		try {
+			
 			list = appDAO.filtrateVehicle();
 			
 		} catch (DAOException e) {

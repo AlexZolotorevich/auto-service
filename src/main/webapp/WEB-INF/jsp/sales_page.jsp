@@ -49,11 +49,11 @@
 <body>
 	<style>
 .sidebar {
+	padding: 10px;
 	margin-left: 50px;
 	width: 350px;
 	float: left;
 	border-radius: 5px;
-	
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
 }
 

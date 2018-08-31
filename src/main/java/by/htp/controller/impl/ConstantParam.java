@@ -38,6 +38,7 @@ public class ConstantParam {
 	public static final String CURRENT_PAGE = "currentPage";
 	public static final String COUNT_PAGES = "countPages";
 	public static final String NUMBER_ONE = "1";
+	public static final String LIST_VEHICLE = "listVehicle";
 	
 	
 	//admin action

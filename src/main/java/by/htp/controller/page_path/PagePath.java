@@ -16,6 +16,6 @@ public class PagePath {
 	public static final String GET_ALL_USERS = "/WEB-INF/jsp/get_all_users_page.jsp";
 	
 	
-	public static final String ERROR_PAGE = "http://localhost:8080/auto-service/Controller/WEB-INF/jsp/error_page.jsp";
+	public static final String ERROR_PAGE = "/WEB-INF/jsp/error_page.jsp";
 	
 }

@@ -63,6 +63,7 @@ public class CommandProvider {
 		commands.put(CommandName.UNBAN_USER, new UnbanUser());
 		commands.put(CommandName.FILTRATE, new Filtrate());
 		
+		
 	}
 	
 	
