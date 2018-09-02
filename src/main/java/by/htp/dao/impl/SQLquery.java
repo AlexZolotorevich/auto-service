@@ -9,6 +9,7 @@ public class SQLquery {
 	/** sql querry get count of vehicle*/
 	
 	public static final String GET_COUNT_OF_VEHICLE = "SELECT COUNT(ID) FROM `service-mercedes`.vehicle WHERE status = '1'";
+	public static final String GET_COUNT_OF_NEW_VEHICLE_ADMIN = "SELECT COUNT(ID) FROM `service-mercedes`.vehicle WHERE status = '0'";
 	
 	/** sql querry for user*/
 	public static final String SIGN_IN = "SELECT ID, login, password, role, status, name, phone, email FROM `service-mercedes`.user WHERE login=? AND password=?";
@@ -24,7 +25,7 @@ public class SQLquery {
 	/** sql querry for vehicle*/
 	public static final String SELECT_ALL_VEHICLE = "SELECT * FROM `service-mercedes`.vehicle WHERE status='1'";
 	public static final String SELECT_VEHICLES_BY_USER = "SELECT * FROM `service-mercedes`.vehicle WHERE user_ID = ? AND status='1'";
-	public static final String SELECT_VEHICLES_BY_ID = "SELECT * FROM `service-mercedes`.vehicle WHERE ID = ? AND status='1'";
+	public static final String SELECT_VEHICLES_BY_ID = "SELECT * FROM `service-mercedes`.vehicle WHERE ID = ?";
 	public static final String SELECT_DESCRIPTION_BY_ID = "SELECT linkDescription FROM `service-mercedes`.description WHERE vehicle_ID = ?";
 	public static final String ADD_VEHICLE = "INSERT INTO `service-mercedes`.vehicle (model, status, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit, mileage, date, user_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String GET_LAST_ID = "SELECT last_insert_id()";

@@ -225,6 +225,7 @@ public class AppDAOImpl implements AppDAO {
 
 				vehicle = new Vehicle(ID, model, year, typeCarcase, price, transmission, typeFuel, engineCapacity,
 						driveUnit, mileage, date);
+				
 			}
 
 			preparedStatement = connection.prepareStatement(SQLquery.SELECT_DESCRIPTION_BY_ID);

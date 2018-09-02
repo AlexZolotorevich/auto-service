@@ -49,19 +49,21 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 
 	
 	@Override
-	public List<Vehicle> getNewCarsOfUsers() throws DAOException {
+	public List<Vehicle> getNewCarsOfUsers(Integer number, Integer start) throws DAOException {
 		
 		List<Vehicle> cars = new ArrayList<Vehicle>();
-		Statement statement;
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
+		Statement statement;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		Integer ID = 0;
 		Vehicle vehicle = null;
-
+		final String LIMIT_AND_OFFSET = " LIMIT " + number + " OFFSET " + start;
+		
+		
 		try (Connection connection = connectionPool.takeConnection()) {
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery(SQLquery.SELECT_NEW_CARS);
+			resultSet = statement.executeQuery(SQLquery.SELECT_NEW_CARS + LIMIT_AND_OFFSET);
 
 			while (resultSet.next()) {
 				ID = resultSet.getInt(SQLquery.ID);
@@ -238,6 +240,35 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 			throw new DAOException("InterruptedException", e);
 		}
 		
+	}
+
+
+	@Override
+	public Integer getNumberOfRows() throws DAOException {
+
+		int numOfRows = 0;
+		Statement statement;
+		ResultSet resultSet;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		
+		try(Connection connection = connectionPool.takeConnection()){
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(SQLquery.GET_COUNT_OF_NEW_VEHICLE_ADMIN);
+			
+			while(resultSet.next()){
+				numOfRows = resultSet.getInt(SQLquery.COUNT_ID);
+			}
+			
+		}catch (SQLException e) {
+			logger.fatal("SQLException in DAO impl in the method getNumberOfRows", e);
+			throw new DAOException("SQLException", e);
+			
+		} catch (InterruptedException e) {
+			logger.fatal("InterruptedException in DAO impl in the method getNumberOfRows", e);
+			throw new DAOException("InterruptedException", e);
+		}
+		
+		return numOfRows;
 	}
 
 

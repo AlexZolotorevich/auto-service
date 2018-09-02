@@ -1,7 +1,10 @@
 package by.htp.entity;
 
+import java.io.Serializable;
 
-public class News {
+public class News implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private long ID;
 	private String title;

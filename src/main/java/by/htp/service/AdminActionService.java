@@ -2,6 +2,7 @@ package by.htp.service;
 
 import java.util.List;
 
+import by.htp.entity.PageInformation;
 import by.htp.entity.User;
 import by.htp.entity.Vehicle;
 import by.htp.service.exception.ServiceException;
@@ -10,7 +11,7 @@ public interface AdminActionService {
 	
 	boolean addNews(String title, String text, long Id) throws ServiceException;
 	
-	List<Vehicle>getNewCarsOfUsers() throws ServiceException;
+	List<Vehicle>getNewCarsOfUsers(String currentPage) throws ServiceException;
 	
 	void acceptVehicle(Integer vehicleID) throws ServiceException;
 	
@@ -21,4 +22,6 @@ public interface AdminActionService {
 	void toBanUser(String userID) throws ServiceException;
 	
 	void toUnBanUser(String userID) throws ServiceException;
+	
+	PageInformation getPageInfo();
 }

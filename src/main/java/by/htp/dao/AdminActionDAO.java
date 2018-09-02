@@ -10,7 +10,7 @@ public interface AdminActionDAO {
 	
 	boolean addNews(String title, String text, int Id, String date) throws DAOException;
 	
-	List<Vehicle> getNewCarsOfUsers() throws DAOException;
+	List<Vehicle> getNewCarsOfUsers(Integer number, Integer start) throws DAOException;
 	
 	void acceptVehicle(Integer vehicleID) throws DAOException;
 	
@@ -21,4 +21,6 @@ public interface AdminActionDAO {
 	void toBanUser(Integer userID) throws DAOException;
 	
 	void toUnBanUser(Integer userID) throws DAOException;
+	
+	Integer getNumberOfRows() throws DAOException;
 }

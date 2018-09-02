@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.controller.command.Command;
 import by.htp.controller.page_path.PagePath;
+import by.htp.entity.PageInformation;
 import by.htp.entity.Vehicle;
 import by.htp.service.AdminActionService;
 import by.htp.service.ServiceFactory;
@@ -27,10 +28,18 @@ public class ToProfilePageAdmin implements Command{
 		String next = ConstantParam.COMMAND + param;
 		request.getSession().setAttribute(ConstantParam.PREVIOUS_QUERY, next);
 		
+		String currentPage = request.getParameter(ConstantParam.CURRENT_PAGE);
+		
 		try {
 			AdminActionService adminActionService = ServiceFactory.getInstance().getAdminActionService();
-			List<Vehicle> newCarsOfUsers = adminActionService.getNewCarsOfUsers();
+			List<Vehicle> newCarsOfUsers = adminActionService.getNewCarsOfUsers(currentPage);
 			request.getSession().setAttribute(ConstantParam.NEW_CARS_OF_USERS, newCarsOfUsers);
+			
+			PageInformation pageInfo = adminActionService.getPageInfo();
+			
+			request.setAttribute(ConstantParam.COUNT_PAGES, pageInfo.getCountOfPage());
+			request.setAttribute(ConstantParam.CURRENT_PAGE, currentPage);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.PROFILE_ADMIN);
 			dispatcher.forward(request, response);
 			

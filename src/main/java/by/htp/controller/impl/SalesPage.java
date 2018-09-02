@@ -34,6 +34,7 @@ public class SalesPage implements Command{
 			
 			request.setAttribute(ConstantParam.COUNT_PAGES, pageInfo.getCountOfPage());
 			request.setAttribute(ConstantParam.CURRENT_PAGE, currentPage);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PagePath.SALES_PAGE);
 			dispatcher.forward(request, response);
 			
