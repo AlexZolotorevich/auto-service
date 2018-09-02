@@ -38,11 +38,11 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 			return true;
 
 		} catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the add news method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the add news method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 	}
@@ -91,11 +91,11 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 			}
 
 		} catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the getNewCarsUser method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the getNewCarsUser method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		return cars;
@@ -113,11 +113,11 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 		preparedStatement.execute();
 			
 		}catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the acceptVehicle method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the acceptVehicle method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		
@@ -143,17 +143,17 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 				connection.commit();
 				
 			}catch (SQLException e) {
-				logger.warn("SQLException in DAO impl. Making rollback", e);
+				logger.warn("SQLException in DAO impl. Making rollback in the deleteVehicle method", e);
 				connection.rollback();
 				throw new DAOException("SQLException", e);
 			}
 			
 			}catch (SQLException e) {
-				logger.fatal("SQLException in DAO impl", e);
+				logger.fatal("SQLException in DAO impl in the deleteVehicleByAdmin method", e);
 				throw new DAOException("SQLException", e);
 
 			} catch (InterruptedException e) {
-				logger.fatal("InterruptedException in DAO impl", e);
+				logger.fatal("InterruptedException in DAO impl in the deleteVehicleByAdmin method", e);
 				throw new DAOException("InterruptedException", e);
 			}
 	}
@@ -184,11 +184,11 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 			}
 			
 		}catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the getAllUsers method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the getAllUsers method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		
@@ -207,11 +207,11 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 			preparedStatement.executeUpdate();
 			
 		}catch(SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the method toBanUser", e);
 			throw new DAOException("SQLException", e);
 			
 		}catch(InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the method toBanUser", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		
@@ -230,11 +230,11 @@ public class AdminActionDAOImpl implements AdminActionDAO{
 			preparedStatement.executeUpdate();
 			
 		}catch(SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the method toUnBanUser", e);
 			throw new DAOException("SQLException", e);
 			
 		}catch(InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the method toUnBanUser", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		

@@ -13,6 +13,20 @@
 	var="ban" />
 <fmt:message bundle="${loc}" key="common.profile_admin.unban.text"
 	var="unban" />
+<fmt:message bundle="${loc}" key="common.profile_admin.id.text" var="id" />
+<fmt:message bundle="${loc}" key="common.profile_admin.login.text"
+	var="login" />
+<fmt:message bundle="${loc}" key="common.profile_admin.status.text"
+	var="status" />
+<fmt:message bundle="${loc}" key="common.profile_admin.role.text"
+	var="role" />
+<fmt:message bundle="${loc}" key="common.profile_admin.name.text"
+	var="name" />
+<fmt:message bundle="${loc}" key="common.profile_admin.phone.text"
+	var="phone" />
+<fmt:message bundle="${loc}" key="common.profile_admin.email.text"
+	var="email" />
+
 
 <html>
 <head>
@@ -67,21 +81,22 @@
 
 	<div class="users">
 		<c:if test="${not empty sessionScope.allUsers}">
-			<c:forEach items="${allUsers}" var="user">
 
-				<div class="content-users">
-					<table class="tg">
-						<tr>
-							<th width="30">${id}</th>
-							<th width="120">${login}</th>
-							<th width="120">${status}</th>
-							<th width="120">${role}</th>
-							<th width="120">${name}</th>
-							<th width="120">${phone}</th>
-							<th width="120">${email}</th>
-							<th width="100"></th>
-							<th width="100"></th>
-						</tr>
+			<div class="content-users">
+				<table class="tg">
+					<tr>
+						<th width="30">${id}</th>
+						<th width="120">${login}</th>
+						<th width="120">${status}</th>
+						<th width="120">${role}</th>
+						<th width="120">${name}</th>
+						<th width="120">${phone}</th>
+						<th width="120">${email}</th>
+						<th width="100"></th>
+						<th width="100"></th>
+					</tr>
+
+					<c:forEach items="${allUsers}" var="user">
 
 						<tr>
 							<td>${user.id}</td>
@@ -99,13 +114,15 @@
 							<td><form action="Controller" method="post">
 									<input type="hidden" name="command" value="unban_user" /> <input
 										type="hidden" name="user_ID" value="${user.id}"> <input
-										class="btn btn-outline-secondary" type="submit" value="${unban}" />
+										class="btn btn-outline-secondary" type="submit"
+										value="${unban}" />
 								</form></td>
 						</tr>
-					</table>
+					</c:forEach>
+				</table>
 
-				</div>
-			</c:forEach>
+			</div>
+
 		</c:if>
 
 	</div>

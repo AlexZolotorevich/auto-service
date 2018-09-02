@@ -46,7 +46,7 @@
 }
 
 .news {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+	
 	margin: 15px;
 	margin-left: auto;
 	margin-right: auto;
@@ -80,6 +80,9 @@
 
 .text-news {
 	margin-top: 5px;
+}
+.news-inner{
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
 }
 </style>
 

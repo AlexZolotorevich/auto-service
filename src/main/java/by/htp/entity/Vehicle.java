@@ -6,7 +6,6 @@ public class Vehicle implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	/** ID */
 	private int ID;
 	
 	
@@ -36,10 +35,8 @@ public class Vehicle implements Serializable{
 	
 	private String mileage;
 	
-	/** Date */
 	private String date;
 	
-	/** Description */
 	private String description;
 	
 	

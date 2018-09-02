@@ -50,8 +50,8 @@ public class CheckParametres implements Filter {
 
 	private List<String> getParam(HttpServletRequest httpRequest) {
 		
-		List<String> list = new ArrayList();
-		Enumeration enumeration = httpRequest.getParameterNames();
+		List<String> list = new ArrayList<String>();
+		Enumeration<?> enumeration = httpRequest.getParameterNames();
 		
 		while (enumeration.hasMoreElements()) {
 			String paramName = (String) enumeration.nextElement();

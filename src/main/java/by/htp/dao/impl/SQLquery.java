@@ -49,6 +49,7 @@ public class SQLquery {
 	
 	/** helpers*/
 	public static final String ID = "ID";
+	public static final String USER = "user";
 	public static final String LOGIN = "login";
 	public static final String STATUS = "status";
 	public static final String ROLE = "role";
@@ -56,6 +57,7 @@ public class SQLquery {
 	public static final String PHONE = "phone";
 	public static final String EMAIL = "email";
 	public static final String STATUS_NUMBER = "0";
+	public static final String STATUS_NUMBER_1 = "1";
 	
 	public static final String MODEL = "model";
 	public static final String YEAR = "year";
@@ -73,4 +75,5 @@ public class SQLquery {
 	public static final String TITLE = "title";
 	public static final String TEXT = "text";
 	public static final String USER_ID = "user_ID";
+	public static final String LAST_INSERT = "last_insert_id()";
 }

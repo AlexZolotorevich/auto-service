@@ -32,6 +32,10 @@ public class UserServiceImpl implements UserService {
 				UserDAO userDAO = daoFactory.getUserDAO();
 				user = userDAO.signIn(login, password);
 				
+				if(user == null) {
+					list.add("incorrectDates");
+				}
+				
 				if(user != null && Integer.parseInt(user.getStatus()) == 0) {
 					list.add("errorBan");
 				}

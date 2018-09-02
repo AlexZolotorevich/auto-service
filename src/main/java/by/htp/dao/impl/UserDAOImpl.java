@@ -44,10 +44,11 @@ public class UserDAOImpl implements UserDAO{
 			}
 		
 		}catch(SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the signIn method", e);
 			throw new DAOException("SQLException",e);
+			
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the signIn method", e);
 			throw new DAOException("SQLException",e);
 		}
 		return user;
@@ -59,8 +60,8 @@ public class UserDAOImpl implements UserDAO{
 		PreparedStatement preparedStatement;
 		ResultSet resultSet = null;
 		User user = null;
-		String status = "1";
-		String role = "user";
+		String status = SQLquery.STATUS_NUMBER_1;
+		String role = SQLquery.USER;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		
 		try (Connection connection = connectionPool.takeConnection()){
@@ -124,11 +125,11 @@ public class UserDAOImpl implements UserDAO{
 			}
 			
 		}catch (SQLException e) {	
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in editUser method", e);
 			throw new DAOException("SQLException",e);
 			
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in editUser method", e);
 			throw new DAOException("InterruptException", e);
 		}
 		return user;
@@ -149,11 +150,11 @@ public class UserDAOImpl implements UserDAO{
 			return false;
 		}
 		}catch (SQLException e) {	
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in checkLogin method", e);
 			throw new DAOException("SQLException",e);
 			
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in checkLogin method", e);
 			throw new DAOException("InterruptException", e);
 		}
 		
@@ -183,10 +184,10 @@ public class UserDAOImpl implements UserDAO{
 				admin = new AdminUser(ID, login, role, status, phone, email);
 			}
 		}catch(SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in signInAdmin", e);
 			throw new DAOException("SQLException", e);
 		}catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in signInAdmin", e);
 			throw new DAOException("InterruptException", e);
 		}
 		return admin;

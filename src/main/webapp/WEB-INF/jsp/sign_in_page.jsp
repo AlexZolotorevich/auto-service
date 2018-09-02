@@ -18,6 +18,8 @@
 	var="login" />
 <fmt:message bundle="${loc}" key="common.signInPage.password.text"
 	var="password" />
+<fmt:message bundle="${loc}" key="common.error.incorrectDates.text"
+	var="incorrectDates" />
 
 <html>
 <head>
@@ -49,7 +51,8 @@
 	color: #cccfd1;
 	padding-top: 10px;
 }
-.text-inner{
+
+.text-inner {
 	height: 35px;
 	text-align: left;
 }
@@ -63,8 +66,12 @@
 	<p>
 	<div class="block">
 		<div class="text">
-			<div class="text-inner"><h6>${login}:</h6></div>
-			<div class="text-inner"><h6>${password}:</h6></div>
+			<div class="text-inner">
+				<h6>${login}:</h6>
+			</div>
+			<div class="text-inner">
+				<h6>${password}:</h6>
+			</div>
 		</div>
 
 		<div class="command">
@@ -94,6 +101,10 @@
 
 							<c:if test="${error.contains('errorBan')}">
 								<c:out value="${errorBan}" />
+							</c:if>
+
+							<c:if test="${error.contains('incorrectDates')}">
+								<c:out value="${incorrectDates}" />
 							</c:if>
 
 						</c:forEach>

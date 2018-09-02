@@ -38,11 +38,11 @@ public class AppDAOImpl implements AppDAO {
 			}
 			
 		}catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the method getNumberOfRows", e);
 			throw new DAOException("SQLException", e);
 			
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the method getNumberOfRows", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		
@@ -83,10 +83,10 @@ public class AppDAOImpl implements AppDAO {
 			}
 
 		} catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the getAllCars method", e);
 			throw new DAOException("SQLException", e);
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the getAllCars method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		return cars;
@@ -124,7 +124,7 @@ public class AppDAOImpl implements AppDAO {
 				resultSet = statement.executeQuery(SQLquery.GET_LAST_ID);
 
 				while (resultSet.next()) {
-					vehicleID = resultSet.getInt("last_insert_id()");
+					vehicleID = resultSet.getInt(SQLquery.LAST_INSERT);
 
 				}
 				if (vehicleID != 0) {
@@ -137,17 +137,17 @@ public class AppDAOImpl implements AppDAO {
 				}
 
 			} catch (SQLException e) {
-				logger.debug("Something wrong. Doing rollback", e);
+				logger.debug("Something wrong. Doing rollback in the addVehicle method", e);
 				connection.rollback();
 				throw new DAOException("SQLException", e);
 			}
 
 		} catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the addVehicle method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the addVehicle method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 
@@ -185,11 +185,11 @@ public class AppDAOImpl implements AppDAO {
 			}
 
 		} catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the getCarsByUser method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the getCarsByUser method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 
@@ -197,7 +197,7 @@ public class AppDAOImpl implements AppDAO {
 	}
 
 	@Override
-	public Vehicle getCarByID(Integer vehicle_ID) throws DAOException {
+	public Vehicle getCarByID(Integer vehicleID) throws DAOException {
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -207,7 +207,7 @@ public class AppDAOImpl implements AppDAO {
 		try (Connection connection = connectionPool.takeConnection()) {
 
 			preparedStatement = connection.prepareStatement(SQLquery.SELECT_VEHICLES_BY_ID);
-			preparedStatement.setInt(1, vehicle_ID);
+			preparedStatement.setInt(1, vehicleID);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -228,7 +228,7 @@ public class AppDAOImpl implements AppDAO {
 			}
 
 			preparedStatement = connection.prepareStatement(SQLquery.SELECT_DESCRIPTION_BY_ID);
-			preparedStatement.setInt(1, vehicle_ID);
+			preparedStatement.setInt(1, vehicleID);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -237,11 +237,11 @@ public class AppDAOImpl implements AppDAO {
 			}
 
 		} catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the getCarsByID method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the getCarsByID method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		return vehicle;
@@ -253,21 +253,21 @@ public class AppDAOImpl implements AppDAO {
 	 *  
 	 *  */
 	@Override
-	public void deleteVehicleByID(Integer vehicle_ID) throws DAOException {
+	public void deleteVehicleByID(Integer vehicleID) throws DAOException {
 		PreparedStatement preparedStatement;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 
 		try (Connection connection = connectionPool.takeConnection()) {
 			preparedStatement = connection.prepareStatement(SQLquery.DELETE_VEHICLE);
-			preparedStatement.setInt(1, vehicle_ID);
+			preparedStatement.setInt(1, vehicleID);
 			preparedStatement.execute();
 
 		} catch (SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the deleteVehicleByID method", e);
 			throw new DAOException("SQLException", e);
 
 		} catch (InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the deleteVehicleByID method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 
@@ -297,11 +297,11 @@ public class AppDAOImpl implements AppDAO {
 			}
 			
 		}catch(SQLException e) {
-			logger.fatal("SQLException in DAO impl", e);
+			logger.fatal("SQLException in DAO impl in the getAllNews method", e);
 			throw new DAOException("SQLException", e);
 			
 		}catch(InterruptedException e) {
-			logger.fatal("InterruptedException in DAO impl", e);
+			logger.fatal("InterruptedException in DAO impl in the getAllNews method", e);
 			throw new DAOException("InterruptedException", e);
 		}
 		return newsList;
