@@ -25,9 +25,14 @@ public class SalesPage implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String currentPage = request.getParameter(ConstantParam.CURRENT_PAGE);
+		
+		String[] model = request.getParameterValues(ConstantParam.MODEL);
+		String[] carcase = request.getParameterValues(ConstantParam.CARCASE);
+		String year = request.getParameter(ConstantParam.YEAR);
+		String[] fuel = request.getParameterValues(ConstantParam.FUEL);
 
 		try {
-			List<Vehicle>  cars = appService.getPortianCars(currentPage);
+			List<Vehicle>  cars = appService.getPortianCars(currentPage, model, carcase, year, fuel);
 			request.getSession().setAttribute(ConstantParam.CARS, cars);
 			
 			PageInformation pageInfo = appService.getPageInfo();

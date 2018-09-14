@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AppService {
 	
-	List<Vehicle> getPortianCars(String currentPage) throws ServiceException;
+	List<Vehicle> getPortianCars(String currentPage, String[] modelInner, String[] carcaseInner, String yearInner, String[] fuelInner) throws ServiceException;
 	
 	PageInformation getPageInfo();
 	
@@ -25,8 +25,5 @@ public interface AppService {
 	List<News> getAllNews() throws ServiceException;
 	
 	public List<String> getListErrors();
-	
-	List<Vehicle> filtrateVehicle(String[] model, String[] carcase, String year, String[] fuel) throws ServiceException;
-	
 	
 }

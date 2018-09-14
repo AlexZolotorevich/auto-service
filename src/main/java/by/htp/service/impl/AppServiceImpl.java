@@ -1,6 +1,5 @@
 package by.htp.service.impl;
 
-
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -22,37 +21,48 @@ public class AppServiceImpl implements AppService {
 	private PageInformation pageInfo = null;
 	private List<String> listErrors = null;
 
-	
 	/** get portion of vehicles */
 	@Override
-	public List<Vehicle> getPortianCars(String currentPageInner) throws ServiceException {
+	public List<Vehicle> getPortianCars(String currentPageInner, String[] modelInner, String[] carcaseInner, String yearInner, String[] fuelInner) throws ServiceException {
 		pageInfo = new PageInformation();
+		String querry = "";
 		
-		if(currentPageInner == null) {
+		if (currentPageInner == null) {
 			currentPageInner = "1";
+		}
+		
+		if(filtration(modelInner,carcaseInner,yearInner,fuelInner)) {
+			BuilderQuerry builder = new BuilderQuerry();
+			String model = builder.buildQuerry(modelInner);
+			String carcase = builder.buildQuerry(carcaseInner);
+			String fuel = builder.buildQuerry(fuelInner);
+			
+			querry = " AND " + builder.buildModel(model) + builder.buildCarcase(carcase) + builder.buildFuel(fuel) + builder.buildYear(yearInner);
+			
 		}
 		
 		Integer currentPage = Integer.parseInt(currentPageInner);
 		pageInfo.setCurrentPage(currentPage);
 		getCountOfPage();
 		getStartOfPage();
-		
+
 		List<Vehicle> cars = null;
 
 		try {
-			cars = appDAO.getAllCars(pageInfo.getCOUNT_ITEMS_PER_PAGE(), pageInfo.getStart());
-			
+			cars = appDAO.getAllCars(pageInfo.getCOUNT_ITEMS_PER_PAGE(), pageInfo.getStart(), querry);
+
 		} catch (DAOException e) {
 			logger.warn("ServletException in AppService in the method getPortionCars", e);
 			throw new ServiceException("ServiceException", e);
 		}
 		return cars;
 	}
+	
 
 	private void getCountOfPage() throws ServiceException {
 		int numberOfRows = getNumberOfRows();
 		Integer countOfPages = numberOfRows / pageInfo.getCOUNT_ITEMS_PER_PAGE();
-		
+
 		if (numberOfRows % pageInfo.getCOUNT_ITEMS_PER_PAGE() != 0) {
 			countOfPages++;
 		}
@@ -71,25 +81,33 @@ public class AppServiceImpl implements AppService {
 
 		return numberOfRows;
 	}
-	
+
 	private void getStartOfPage() throws ServiceException {
 		int start = pageInfo.getCurrentPage() * pageInfo.getCOUNT_ITEMS_PER_PAGE() - pageInfo.getCOUNT_ITEMS_PER_PAGE();
 		pageInfo.setStart(start);
 	}
 	
 	
+	private boolean filtration(String[] modelInner, String[] carcaseInner, String yearInner, String[] fuelInner) {
+		if(modelInner != null || carcaseInner != null || yearInner != null || fuelInner != null ) {
+			return true;	
+		}
+		return false;	
+	}
 
 	/** add vehicle user */
 	@Override
 	public boolean addVehicle(String model, String year, String typeCarcase, String price, String transmission,
-			String typeFuel, String engineCapacity, String driveUnit, String mileage, String userID, String description) throws ServiceException {
-		
-		Vehicle vehicle = new Vehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity, driveUnit, mileage, description);
+			String typeFuel, String engineCapacity, String driveUnit, String mileage, String userID, String description)
+			throws ServiceException {
+
+		Vehicle vehicle = new Vehicle(model, year, typeCarcase, price, transmission, typeFuel, engineCapacity,
+				driveUnit, mileage, description);
 		listErrors = ValidationProvider.checkVehicle(vehicle);
 		String date = Util.takeDate();
-		
+
 		try {
-			if(listErrors.isEmpty()) {
+			if (listErrors.isEmpty()) {
 				appDAO.addVehicle(vehicle, Integer.parseInt(userID), date);
 				return true;
 			}
@@ -99,12 +117,6 @@ public class AppServiceImpl implements AppService {
 		}
 		return false;
 	}
-	
-	
-	
-	
-
-	
 
 	/** get cars of user (admit userID) */
 	@Override
@@ -122,7 +134,6 @@ public class AppServiceImpl implements AppService {
 		return cars;
 	}
 
-	
 	/** get car using ID */
 	@Override
 	public Vehicle getCarByID(String vehicleID) throws ServiceException {
@@ -154,9 +165,6 @@ public class AppServiceImpl implements AppService {
 
 	}
 
-
-
-	
 	@Override
 	public PageInformation getPageInfo() {
 		return pageInfo;
@@ -164,37 +172,23 @@ public class AppServiceImpl implements AppService {
 
 	@Override
 	public List<News> getAllNews() throws ServiceException {
-		
+
 		List<News> news = null;
-		
+
 		try {
 			news = appDAO.getAllNews();
-			
+
 		} catch (DAOException e) {
 			logger.warn("ServletException in AppService in the method getAllNews", e);
 			throw new ServiceException("ServiceException", e);
 		}
-		
+
 		return news;
 	}
+
 	@Override
 	public List<String> getListErrors() {
 		return listErrors;
 	}
 
-	@Override
-	public List<Vehicle> filtrateVehicle(String[] model, String[] carcase, String year, String[] fuel) throws ServiceException {
-		
-		List<Vehicle> list = null;
-		
-		try {
-			
-			list = appDAO.filtrateVehicle();
-			
-		} catch (DAOException e) {
-			logger.warn("ServletException in AppService in the method filtrateVehicle", e);
-			throw new ServiceException("ServiceException", e);
-		}
-		return list;
-	}
 }

@@ -34,7 +34,7 @@ public class SQLquery {
 	public static final String DELETE_VEHICLE = "UPDATE `service-mercedes`.`vehicle` SET `status`='0' WHERE `ID`=?";
 	public static final String DELETE_VEHICLE_BY_ADMIN = "DELETE FROM `service-mercedes`.vehicle WHERE ID = ?";
 	public static final String DELETE_VEHICLE_DESCRIPTION_BY_ADMIN = "DELETE FROM `service-mercedes`.description WHERE vehicle_ID = ?";
-	
+	public static final String SELECT_VEHICLE_WITH_FILTER = "SELECT * FROM `service-mercedes`.vehicle WHERE status='1' AND ";
 	
 	
 	

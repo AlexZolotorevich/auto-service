@@ -13,9 +13,9 @@ import by.htp.dao.exception.DAOException;
 
 public class HelperDAOImpl  implements HelperDAO{
 	
-	private final static Logger logger = Logger.getLogger(AppDAOImpl.class);
+	private final static Logger logger = Logger.getLogger(HelperDAOImpl.class);
 	
-	public Integer getNumberOfRows() throws DAOException {
+	public Integer getNumberOfRows(String querry) throws DAOException {
 
 		int numOfRows = 0;
 		Statement statement;
@@ -24,7 +24,7 @@ public class HelperDAOImpl  implements HelperDAO{
 		
 		try(Connection connection = connectionPool.takeConnection()){
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery(SQLquery.GET_COUNT_OF_NEW_VEHICLE_ADMIN);
+			resultSet = statement.executeQuery(querry);
 			
 			while(resultSet.next()){
 				numOfRows = resultSet.getInt(SQLquery.COUNT_ID);

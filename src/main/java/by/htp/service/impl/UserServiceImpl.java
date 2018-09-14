@@ -17,7 +17,7 @@ import by.htp.service.impl.validation.ValidationProvider;
 public class UserServiceImpl implements UserService {
 
 	
-	private final static Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
+	private final static Logger logger = Logger.getLogger(UserServiceImpl.class);
 	private List<String> list = null;
 	
 	
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		} catch (DAOException e) {
-			LOGGER.warn("ServletException in Controller", e);
+			logger.warn("ServletException in Controller", e);
 			throw new ServiceException("From DAO", e);
 		}
 	return user;
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 					}
 			}
 		} catch (DAOException e) {
-			LOGGER.warn("ServiceException in Service");
+			logger.warn("ServiceException in Service");
 			throw new ServiceException("From DAO", e);
 		} 
 		return userNew;
@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
 			}
 			
 		}catch(DAOException e) {
-			LOGGER.warn("ServiceException in Service");
+			logger.warn("ServiceException in Service");
 			throw new ServiceException("From DAO", e);
 		}
 		
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			admin = userDAO.signInAdmin(login, password);
 		} catch (DAOException e) {
-			LOGGER.warn("ServiceException in Service");
+			logger.warn("ServiceException in Service");
 			throw new ServiceException("From DAO", e);
 		}
 		return admin;

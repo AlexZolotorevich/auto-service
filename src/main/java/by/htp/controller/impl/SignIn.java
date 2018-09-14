@@ -18,54 +18,64 @@ import by.htp.service.exception.ServiceException;
 
 public class SignIn implements Command {
 
+	private UserService userService = ServiceFactory.getInstance().getUserService();
+	private String nextPage = PagePath.MAIN_PAGE;
+	private List<String> errorList = null;
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String login = request.getParameter(ConstantParam.LOGIN);
 		String password = request.getParameter(ConstantParam.PASSWORD);
-		String nextPage = PagePath.MAIN_PAGE;
-		List<String> errorList = null;
-		
-		try {
-			UserService userService = ServiceFactory.getInstance().getUserService();
 
-			/**
-			 * check admin or user with prefix [Admin] if it's true - make login
-			 */
-			if (login.contains(ConstantParam.ADMIN_PREFIX)) {
-				AdminUser admin = userService.signInAdmin(login, password);
-				
-				if (admin != null) {
-					request.getSession(true).setAttribute(ConstantParam.ADMIN, admin);
-					
-				} else {
-					request.setAttribute(ConstantParam.ERROR_MESSAGE, ConstantParam.INCORRECT_DATES);
-					nextPage = PagePath.SIGN_IN_PAGE;
-				}
+		if (login.contains(ConstantParam.ADMIN_PREFIX)) {
+			loginAdmin(login, password, request);
 
-				/** else we work with simple user and check him */
-			} else {
-				User user = userService.signIn(login, password);
-				errorList = userService.getList();
-				
-				if (!errorList.isEmpty()) {
-					request.setAttribute(ConstantParam.ERROR_MESSAGE, errorList);
-					nextPage = PagePath.SIGN_IN_PAGE;
-					
-					/**
-					 * if we get user and user.status == 0 it means that user was banned from admin
-					 */
-				} else {
-					request.getSession(true).setAttribute(ConstantParam.USER, user);
-					request.setAttribute(ConstantParam.LOGIN, user.getLogin());
-				}
-			}
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-			dispatcher.forward(request, response);
-			
-		} catch (ServiceException e) {
-			response.sendRedirect(PagePath.ERROR_PAGE);
+		} else {
+			loginUser(login, password, request);
 		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
+		dispatcher.forward(request, response);
+
+	}
+
+	private void loginAdmin(String login, String password, HttpServletRequest request) {
+
+		try {
+			AdminUser admin = userService.signInAdmin(login, password);
+
+			if (admin != null) {
+				request.getSession(true).setAttribute(ConstantParam.ADMIN, admin);
+
+			} else {
+				request.setAttribute(ConstantParam.ERROR_MESSAGE, ConstantParam.INCORRECT_DATES);
+				nextPage = PagePath.SIGN_IN_PAGE;
+			}
+
+		} catch (ServiceException e) {
+			nextPage = PagePath.ERROR_PAGE;
+		}
+	}
+
+	private void loginUser(String login, String password, HttpServletRequest request) {
+
+		try {
+			User user = userService.signIn(login, password);
+			errorList = userService.getList();
+
+			if (!errorList.isEmpty()) {
+				request.setAttribute(ConstantParam.ERROR_MESSAGE, errorList);
+				nextPage = PagePath.SIGN_IN_PAGE;
+
+			} else {
+				request.getSession(true).setAttribute(ConstantParam.USER, user);
+				request.setAttribute(ConstantParam.LOGIN, user.getLogin());
+			}
+
+		} catch (ServiceException e) {
+			nextPage = PagePath.ERROR_PAGE;
+		}
+
 	}
 }

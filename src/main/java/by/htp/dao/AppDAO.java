@@ -11,7 +11,7 @@ public interface AppDAO {
 	
 	Integer getNumberOfRows() throws DAOException;
 	
-	List<Vehicle> getAllCars(Integer number, Integer start) throws DAOException;
+	List<Vehicle> getAllCars(Integer number, Integer start, String querry) throws DAOException;
 	
 	List<Vehicle> getCarsByUser(Integer userID) throws DAOException;
 	
@@ -23,5 +23,4 @@ public interface AppDAO {
 	
 	List<News> getAllNews() throws DAOException;
 	
-	List<Vehicle> filtrateVehicle() throws DAOException;
 }

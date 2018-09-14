@@ -227,7 +227,7 @@
 					</div>
 				</div>
 
-				<input type="hidden" name="command" value="sales_page" /> <input
+				<input type="hidden" name="command" value="filtrate" /> <input
 					class="btn btn-outline-secondary" type="submit" value="${accept}" />
 			</form>
 		</div>

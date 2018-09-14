@@ -19,7 +19,6 @@ import by.htp.entity.Vehicle;
 public class AppDAOImpl implements AppDAO {
 
 	private final static Logger logger = Logger.getLogger(AppDAOImpl.class);
-
 	
 	@Override
 	public Integer getNumberOfRows() throws DAOException {
@@ -52,7 +51,7 @@ public class AppDAOImpl implements AppDAO {
 	
 	
 	@Override
-	public List<Vehicle> getAllCars(Integer number, Integer start) throws DAOException {
+	public List<Vehicle> getAllCars(Integer number, Integer start, String querry) throws DAOException {
 
 		Statement statement;
 		ResultSet resultSet;
@@ -62,7 +61,7 @@ public class AppDAOImpl implements AppDAO {
 		
 		try (Connection connection = connectionPool.takeConnection()) {
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery(SQLquery.SELECT_ALL_VEHICLE + LIMIT_AND_OFFSET);
+			resultSet = statement.executeQuery(SQLquery.SELECT_ALL_VEHICLE + querry + LIMIT_AND_OFFSET);
 
 			while (resultSet.next()) {
 				int ID = resultSet.getInt(SQLquery.ID);
@@ -308,13 +307,4 @@ public class AppDAOImpl implements AppDAO {
 		return newsList;
 	}
 
-
-	@Override
-	public List<Vehicle> filtrateVehicle() throws DAOException {
-		
-		
-		return null;
-	}
-
-	
 }
