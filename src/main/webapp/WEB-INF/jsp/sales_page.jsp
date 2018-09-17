@@ -67,6 +67,7 @@
 }
 
 .content-cars {
+	margin: 15px;
 	background: 3px solid #e8e8e8;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
 	width: 100%;
@@ -125,6 +126,10 @@
 .block:last-child {
 	margin-right: 0;
 }
+
+
+
+
 </style>
 
 
