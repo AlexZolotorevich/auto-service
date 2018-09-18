@@ -89,7 +89,7 @@
 
 
 
-	<div class="container-fluid p-0"">
+	<div class="container-fluid p-0">
 		<div id="page-align" class="radius3">
 			<jsp:include page="header.jsp" />
 		</div>
