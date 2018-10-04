@@ -17,6 +17,11 @@
 	var="delete" />
 <fmt:message bundle="${loc}" key="common.profile.infoText.text"
 	var="infoText" />
+<fmt:message bundle="${loc}" key="common.error.checkLogin.text"
+	var="incorrectLogin" />
+<fmt:message bundle="${loc}" key="common.error.checkPasswordSignIn.text"
+	var="incorrectPassword" />
+
 <html>
 
 
@@ -32,6 +37,24 @@
 	background: 3px solid #e8e8e8;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
 }
+
+.errors {
+	width: 300px; /* Ширина слоя в пикселах */
+	margin: 0 auto; /* Отступ слева и справа */
+	background: #393939; /* Цвет фона */
+	padding: 10px; /* Поля вокруг текста */
+	padding-left: 30px;
+	text-align: left; /* Выравнивание содержимого слоя по левому краю */
+}
+
+.profile-table {
+	width: 300px; /* Ширина слоя в пикселах */
+	margin: 0 auto; /* Отступ слева и справа */
+	background: #393939; /* Цвет фона */
+	padding: 10px; /* Поля вокруг текста */
+	padding-left: 30px;
+	text-align: left; /* Выравнивание содержимого слоя по левому краю */
+}
 </style>
 
 	<div class="container-fluid p-0"">
@@ -39,7 +62,7 @@
 			<jsp:include page="header.jsp" />
 		</div>
 	</div>
-	<div class="profile">
+	<div class="profile-table">
 		<form action="Controller" method="post">
 			<input type="hidden" name="command" value="edit_user" /> <input
 				class="btn btn-outline-secondary" type="text" name="login"
@@ -55,7 +78,37 @@
 				class="btn btn-outline-secondary" type="submit" value="${accept}">
 		</form>
 
-		
+
+	</div>
+
+	<div class="errors">
+		<i> <c:if test="${not empty requestScope.errorMessage}">
+				<div class="text-color">
+					<c:forEach items="${requestScope.errorMessage}" var="error">
+
+						<c:if test="${error.contains('incorrectLogin')}">
+							<c:out value="${incorrectLogin}" />
+						</c:if>
+
+						<c:if test="${error.contains('incorrectPassword')}">
+							<c:out value="${incorrectPassword}" />
+						</c:if>
+
+						<c:if test="${error.contains('incorrectEmail')}">
+							<c:out value="${incorrectEmail}" />
+						</c:if>
+
+						<c:if test="${error.contains('incorrectPhone')}">
+							<c:out value="${incorrectPhone}" />
+						</c:if>
+
+						<c:if test="${error.contains('incorrectName')}">
+							<c:out value="${incorrectName}" />
+						</c:if>
+					</c:forEach>
+				</div>
+			</c:if>
+		</i><br />
 	</div>
 
 	<div class="text">
@@ -69,15 +122,15 @@
 				<div class="content-cars">
 					<form action="Controller" method="get">
 						<p>${car}</p>
-						<input type="hidden" name="car" value="${car}">
-						<input type="hidden" name="command" value="detail_vehicle" /> 
-						<input type="hidden" name="vehicle_ID" value="${car.ID}"><input
+						<input type="hidden" name="car" value="${car}"> <input
+							type="hidden" name="command" value="detail_vehicle" /> <input
+							type="hidden" name="vehicle_ID" value="${car.ID}"><input
 							class="btn btn-outline-secondary" type="submit" value="${detail}" />
 					</form>
-					
+
 					<form action="Controller" method="post">
-						<input type="hidden" name="command" value="delete_vehicle" /> 
-						<input type="hidden" name="vehicle_ID" value="${car.ID}"><input
+						<input type="hidden" name="command" value="delete_vehicle" /> <input
+							type="hidden" name="vehicle_ID" value="${car.ID}"><input
 							class="btn btn-outline-secondary" type="submit" value="${delete}" />
 					</form>
 

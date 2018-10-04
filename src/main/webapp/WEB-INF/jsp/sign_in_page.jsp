@@ -40,10 +40,6 @@
 	text-align: left; /* Выравнивание содержимого слоя по левому краю */
 }
 
-.text-color {
-	color: #a09fa5;
-}
-
 .text {
 	float: left;
 	padding-left: 30px;

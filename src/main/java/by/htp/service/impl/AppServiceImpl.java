@@ -23,29 +23,24 @@ public class AppServiceImpl implements AppService {
 
 	/** get portion of vehicles */
 	@Override
-	public List<Vehicle> getPortianCars(String currentPageInner, String[] modelInner, String[] carcaseInner, String yearInner, String[] fuelInner) throws ServiceException {
+	public List<Vehicle> getPortianCars(String currentPageInner, String[] modelInner, String[] carcaseInner,
+			String yearInner, String[] fuelInner) throws ServiceException {
+		
 		pageInfo = new PageInformation();
 		String querry = "";
-		
+
 		if (currentPageInner == null) {
 			currentPageInner = "1";
 		}
-		
-		if(filtration(modelInner,carcaseInner,yearInner,fuelInner)) {
-			BuilderQuerry builder = new BuilderQuerry();
-			String model = builder.buildQuerry(modelInner);
-			String carcase = builder.buildQuerry(carcaseInner);
-			String fuel = builder.buildQuerry(fuelInner);
-			
-			querry = " AND " + builder.buildModel(model) + builder.buildCarcase(carcase) + builder.buildFuel(fuel) + builder.buildYear(yearInner);
-			
+
+		if (filtration(modelInner, carcaseInner, yearInner, fuelInner)) {
+			querry = createFilterQuerry(modelInner,carcaseInner,yearInner,fuelInner);
+
 		}
-		
 		Integer currentPage = Integer.parseInt(currentPageInner);
 		pageInfo.setCurrentPage(currentPage);
 		getCountOfPage();
 		getStartOfPage();
-
 		List<Vehicle> cars = null;
 
 		try {
@@ -57,7 +52,17 @@ public class AppServiceImpl implements AppService {
 		}
 		return cars;
 	}
+
 	
+	public String createFilterQuerry(String modelInner[],String carcaseInner[],String yearInner,String fuelInner[]) {
+			BuilderQuerry builder = new BuilderQuerry();
+			String model = builder.buildQuerry(modelInner);
+			String carcase = builder.buildQuerry(carcaseInner);
+			String fuel = builder.buildQuerry(fuelInner);
+			String querry = " AND " + builder.buildModel(model) + builder.buildCarcase(carcase) + builder.buildFuel(fuel) + builder.buildYear(yearInner);
+			
+		return querry;
+	}
 
 	private void getCountOfPage() throws ServiceException {
 		int numberOfRows = getNumberOfRows();
@@ -86,13 +91,12 @@ public class AppServiceImpl implements AppService {
 		int start = pageInfo.getCurrentPage() * pageInfo.getCOUNT_ITEMS_PER_PAGE() - pageInfo.getCOUNT_ITEMS_PER_PAGE();
 		pageInfo.setStart(start);
 	}
-	
-	
+
 	private boolean filtration(String[] modelInner, String[] carcaseInner, String yearInner, String[] fuelInner) {
-		if(modelInner != null || carcaseInner != null || yearInner != null || fuelInner != null ) {
-			return true;	
+		if (modelInner != null || carcaseInner != null || yearInner != null || fuelInner != null) {
+			return true;
 		}
-		return false;	
+		return false;
 	}
 
 	/** add vehicle user */

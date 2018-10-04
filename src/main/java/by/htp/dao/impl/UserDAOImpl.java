@@ -101,10 +101,10 @@ public class UserDAOImpl implements UserDAO{
 		PreparedStatement preparedStatement;
 		ResultSet resultSet = null;
 		User user = null;
-		String status = "1";
-		String role = "user";
+		String status = SQLquery.STATUS_NUMBER_1;
+		String role = SQLquery.USER;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
-
+		
 		try(Connection connection = connectionPool.takeConnection()){
 			preparedStatement = connection.prepareStatement(SQLquery.EDIT_USER);
 			preparedStatement.setString(1, login);
