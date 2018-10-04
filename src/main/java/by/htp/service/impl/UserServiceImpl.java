@@ -19,6 +19,17 @@ public class UserServiceImpl implements UserService {
 	
 	private final static Logger logger = Logger.getLogger(UserServiceImpl.class);
 	private List<String> list = null;
+	private UserService userService;
+	
+	
+	/** constructor for factory*/
+	public UserServiceImpl() {
+	}
+	
+	/** constructor for test*/
+	public UserServiceImpl (UserService userService) {
+		this.userService = userService;
+	}
 	
 	
 	@Override
