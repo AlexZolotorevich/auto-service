@@ -1,0 +1,11 @@
+
+#page-align{
+	background: #E6E6E6;
+	margin: 35px auto;
+	box-shadow: 0px 1px 3px #DDDDDD;
+	-webkit- box-shadow:  0px 1px 3px #DDDDDD;
+	-o- box-shadow:  0px 1px 3px #DDDDDD;
+	-moz- box-shadow:  0px 1px 3px #DDDDDD;
+	overflow: hidden;
+}
+
