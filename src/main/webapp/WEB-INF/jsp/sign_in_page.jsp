@@ -31,10 +31,17 @@
 </head>
 <body>
 	<style>
+.content{
+	background-color: #383838;
+	height: 400px;
+	}
+		
 .block {
 	width: 460px; /* Ширина слоя в пикселах */
 	margin: 0 auto; /* Отступ слева и справа */
-	background: #393939; /* Цвет фона */
+	border: 1px solid #060606;
+	
+	background: url(static/images/carbon.jpeg);
 	padding: 10px; /* Поля вокруг текста */
 	padding-left: 30px;
 	text-align: left; /* Выравнивание содержимого слоя по левому краю */
@@ -59,54 +66,56 @@
 			<jsp:include page="header.jsp" />
 		</div>
 	</div>
-	<p>
-	<div class="block">
-		<div class="text">
-			<div class="text-inner">
-				<h6>${login}:</h6>
+
+	<div class="content">
+		<div class="block">
+			<div class="text">
+				<div class="text-inner">
+					<h6>${login}:</h6>
+				</div>
+				<div class="text-inner">
+					<h6>${password}:</h6>
+				</div>
 			</div>
-			<div class="text-inner">
-				<h6>${password}:</h6>
+
+			<div class="command">
+				<form action="Controller" method="post">
+
+					<input type="hidden" name="command" value="sign_in" /> <input
+						class="btn btn-outline-secondary" type="text" name="login"
+						placeholder="login"></br> <input
+						class="btn btn-outline-secondary" type="password" name="password"
+						placeholder="password"></br> <input
+						class="btn btn-outline-secondary" type="submit" value="accept">
+				</form>
 			</div>
-		</div>
-
-		<div class="command">
-			<form action="Controller" method="post">
-
-				<input type="hidden" name="command" value="sign_in" /> <input
-					class="btn btn-outline-secondary" type="text" name="login"
-					placeholder="login"></br> <input
-					class="btn btn-outline-secondary" type="password" name="password"
-					placeholder="password"></br> <input
-					class="btn btn-outline-secondary" type="submit" value="accept">
-			</form>
-		</div>
 
 
-		<div class="errors">
-			<i> <c:if test="${not empty requestScope.errorMessage}">
-					<div class="text-color">
-						<c:forEach items="${requestScope.errorMessage}" var="error">
-							<c:if test="${error.contains('incorrectLogin')}">
-								<c:out value="${incorrectLogin}" />
-							</c:if>
+			<div class="errors">
+				<i> <c:if test="${not empty requestScope.errorMessage}">
+						<div class="text-color">
+							<c:forEach items="${requestScope.errorMessage}" var="error">
+								<c:if test="${error.contains('incorrectLogin')}">
+									<c:out value="${incorrectLogin}" />
+								</c:if>
 
-							<c:if test="${error.contains('incorrectPassword')}">
-								<c:out value="${incorrectPassword}" />
-							</c:if>
+								<c:if test="${error.contains('incorrectPassword')}">
+									<c:out value="${incorrectPassword}" />
+								</c:if>
 
-							<c:if test="${error.contains('errorBan')}">
-								<c:out value="${errorBan}" />
-							</c:if>
+								<c:if test="${error.contains('errorBan')}">
+									<c:out value="${errorBan}" />
+								</c:if>
 
-							<c:if test="${error.contains('incorrectDates')}">
-								<c:out value="${incorrectDates}" />
-							</c:if>
+								<c:if test="${error.contains('incorrectDates')}">
+									<c:out value="${incorrectDates}" />
+								</c:if>
 
-						</c:forEach>
-					</div>
-				</c:if>
-			</i><br />
+							</c:forEach>
+						</div>
+					</c:if>
+				</i><br />
+			</div>
 		</div>
 	</div>
 	<div class="footer">

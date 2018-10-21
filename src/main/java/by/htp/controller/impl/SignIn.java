@@ -34,7 +34,8 @@ public class SignIn implements Command {
 		} else {
 			loginUser(login, password, request);
 		}
-
+		
+	
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 

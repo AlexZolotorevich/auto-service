@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 public class ValidationImpl implements Validation{
 
-	public final static String LOGIN_PATTERN = "([a-zA-Z0-9]{1,20}[^\\s])";
+	public final static String LOGIN_PATTERN = "([a-zA-Z0-9]{5,20}[^\\s])";
 	public final static String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,15})";
 	public final static String PHONE_PATTERN = "^(\\+?375)(29|33)[0-9]{7}$";
 	public final static String EMAIL_PATTERN = "^([a-zA-Z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$";

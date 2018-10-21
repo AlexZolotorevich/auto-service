@@ -24,11 +24,11 @@
 	var="welcome" />
 <fmt:message bundle="${loc}" key="common.header.signout.text"
 	var="signout" />
-	<fmt:message bundle="${loc}" key="common.header.profile.text"
+<fmt:message bundle="${loc}" key="common.header.profile.text"
 	var="toProfile" />
-	
-	
-	
+
+
+
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="static/css/main.css">
@@ -45,46 +45,50 @@
 </head>
 
 <body>
-<style>
-
-.searching {
-	
-	height: 1000 px;
-	padding: 8px;
-	
+	<style>
+.active {
+	color: red;
 }
 
-.menu{
+.searching {
+	height: 1000 px;
+	padding: 8px;
+}
+
+.menu {
 	width: 800px;
 	height: 300 px;
 	width: 500px;
 }
 
-.lang{
+.lang {
 	padding: 5px; /* Поля вокруг текста */
-    float: left; /* Обтекание по правому краю */
+	float: left; /* Обтекание по правому краю */
 }
 
-.profile{
+.profile {
 	padding: 5px; /* Поля вокруг текста */
 	text-align: right;
 }
 
-.signing{
-	padding: 5px; /* Поля вокруг текста */
-    text-align: right;
-    
-}
-
-.signuping{
+.signing {
 	padding: 5px; /* Поля вокруг текста */
 	text-align: right;
-}    
-.text-color{
+}
+
+.signuping {
+	padding: 5px; /* Поля вокруг текста */
+	text-align: right;
+}
+
+.text-color {
 	color: white;
 	padding: 5px; /* Поля вокруг текста */
-    text-align: right;
-    
+	text-align: right;
+}
+
+.navbar.navbar-expand-lg.navbar-dark.bg-dark {
+	color: #060606;
 }
 </style>
 
@@ -93,7 +97,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a
 		href="Controller?command=main_page" command="main_page"
 		class="navbar-brand"> <img src="static/images/logo.png"
-		height="70" width="70" border="0">
+		height="90" width="140" border="0">
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
@@ -108,106 +112,111 @@
 				href="Controller?command=main_page" class="nav-link">${home}</a></li>
 			<li class="nav-item"><a href="Controller?command=sales_page"
 				class="nav-link">${sales}</a></li>
-			<li class="nav-item"><a href="Controller?command=service_page" class="nav-link">${service}</a></li>
-			<li class="nav-item"><a href="Controller?command=about_us" class="nav-link">${about}</a></li>
+			<li class="nav-item"><a href="Controller?command=service_page"
+				class="nav-link">${service}</a></li>
+			<li class="nav-item"><a href="Controller?command=about_us"
+				class="nav-link">${about}</a></li>
 		</ul>
-		
-		<c:if test="${(empty sessionScope.user) and (empty sessionScope.admin)}">
-		<div class="sign">
-		<div class="signing">
-			<form action="Controller" method="get">
-				<input type="hidden" name="command" value="to_sign_in_page" /> <input
-					class="btn btn-outline-secondary" type="submit" name="signin"
-					value="${signin}" />
-			</form>
+
+		<c:if
+			test="${(empty sessionScope.user) and (empty sessionScope.admin)}">
+			<div class="sign">
+				<div class="signing">
+					<form action="Controller" method="get">
+						<input type="hidden" name="command" value="to_sign_in_page" /> <input
+							class="btn btn-outline-secondary" type="submit" name="signin"
+							value="${signin}" />
+					</form>
+				</div>
+				<div class="signuping">
+					<form action="Controller" method="get">
+						<input type="hidden" name="command" value="to_sign_up_page" /> <input
+							class="btn btn-outline-secondary" type="submit" name="signup"
+							value="${signup}" />
+					</form>
+				</div>
 			</div>
-			<div class="signuping">
-			<form action="Controller" method="get">
-				<input type="hidden" name="command" value="to_sign_up_page" /> <input
-					class="btn btn-outline-secondary" type="submit" name="signup"
-					value="${signup}" />
-			</form>
-			</div>
-		</div>
 		</c:if>
-		
+
 		<div class="profile">
 			<c:if test="${not empty sessionScope.user}">
-			<form action="Controller" method="get">
-				<input type="hidden" name="command" value="to_profile_page" /> <input
-					class="btn btn-outline-secondary" type="submit" value="${toProfile}" />
-					</form>
+				<form action="Controller" method="get">
+					<input type="hidden" name="command" value="to_profile_page" /> <input
+						class="btn btn-outline-secondary" type="submit"
+						value="${toProfile}" />
+				</form>
 			</c:if>
 		</div>
-		
+
 		<div class="profile">
 			<c:if test="${not empty sessionScope.admin}">
-			<form action="Controller" method="get">
-				<input type="hidden" name="command" value="to_profile_page_admin" /> <input
-					class="btn btn-outline-secondary" type="submit" value="${toProfile}" />
-					</form>
+				<form action="Controller" method="get">
+					<input type="hidden" name="command" value="to_profile_page_admin" />
+					<input class="btn btn-outline-secondary" type="submit"
+						value="${toProfile}" />
+				</form>
 			</c:if>
 		</div>
-		
-		
+
+
 		<c:if test="${not empty sessionScope.user}">
-		<div class="sign">
-		<div class="text-color">
-			<c:out value="${welcome} ${sessionScope.user.login}!"/>
-		</div>
-		<div class="sign">
-		<div class="signuping">
-			<form action="Controller" method="post">
-				<input type="hidden" name="command" value="sign_out" /> <input
-					class="btn btn-outline-secondary" type="submit" name="signout"
-					value="${signout}" />
-			</form>
+			<div class="sign">
+				<div class="text-color">
+					<c:out value="${welcome} ${sessionScope.user.login}!" />
+				</div>
+				<div class="sign">
+					<div class="signuping">
+						<form action="Controller" method="post">
+							<input type="hidden" name="command" value="sign_out" /> <input
+								class="btn btn-outline-secondary" type="submit" name="signout"
+								value="${signout}" />
+						</form>
+					</div>
+				</div>
 			</div>
-			</div>
-		</div>
 		</c:if>
-		
+
 		<c:if test="${not empty sessionScope.admin}">
 			<div class="sign">
-			<div class="text-color">
-				<c:out value="${welcome} ${ sessionScope.admin.login}!"/>
+				<div class="text-color">
+					<c:out value="${welcome} ${ sessionScope.admin.login}!" />
+				</div>
+				<div class="sign">
+					<div class="signuping">
+						<form action="Controller" method="post">
+							<input type="hidden" name="command" value="sign_out" /> <input
+								class="btn btn-outline-secondary" type="submit" name="signout"
+								value="${signout}" />
+						</form>
+					</div>
+				</div>
 			</div>
-			<div class="sign">
-			<div class="signuping">
-			<form action="Controller" method="post">
-				<input type="hidden" name="command" value="sign_out" /> <input
-					class="btn btn-outline-secondary" type="submit" name="signout"
-					value="${signout}" />
-			</form>
-			</div>
-			</div>
-		</div>
 		</c:if>
-		
+
 
 		<div class="searching ">
-				<form class="form-inline my-2 my-lg-0" action="Controller"
-					method="post">
-					<input type="text" class="form-control mr-sm-2"
-						placeholder=${search} 
+			<form class="form-inline my-2 my-lg-0" action="Controller"
+				method="post">
+				<input type="text" class="form-control mr-sm-2" placeholder=${search
+					} 
 						aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0">${search}</button>
-				</form>
-				
-				
-			
-			<div class="lang ">
-			<form action="Controller" method="post">
-				<input type="hidden" name="command" value="localization" /> <input
-					class="btn btn-outline-secondary" type="submit" name="local"
-					value="en" /> <input class="btn btn-outline-secondary"
-					type="submit" name="local" value="ru" />
+				<button class="btn btn-outline-success my-2 my-sm-0">${search}</button>
 			</form>
+
+
+
+			<div class="lang ">
+				<form action="Controller" method="post">
+					<input type="hidden" name="command" value="localization" /> <input
+						class="btn btn-outline-secondary" type="submit" name="local"
+						value="en" /> <input class="btn btn-outline-secondary"
+						type="submit" name="local" value="ru" />
+				</form>
+			</div>
+
 		</div>
-			
-		</div>
-			
-		
+
+
 	</div>
 	</nav>
 
@@ -225,6 +234,8 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+	
+	
 
 </body>
 </html>
